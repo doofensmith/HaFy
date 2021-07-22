@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/botnavmenu_beranda"
+        android:icon="@drawable/ic_baseline_home_24"
+        android:title="Beranda" />
+
+    <item
+        android:id="@+id/botnavmenu_artikel"
+        android:title="Artikel"
+        android:icon="@drawable/ic_baseline_article_24" />
+
+    <item
+        android:id="@+id/botnavmenu_kegiatan"
+        android:title="Kegiatan"
+        android:icon="@drawable/ic_baseline_event_24" />
+
+    <item
+        android:id="@+id/botnavmenu_akun"
+        android:title="Akun"
+        android:icon="@drawable/ic_baseline_person_24" />
+
+</menu>

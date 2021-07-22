@@ -7,6 +7,35 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
+        <com.google.android.material.appbar.MaterialToolbar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/secondary"
+            app:title="Beranda"
+            app:menu="@menu/toolbarmenu"
+            android:theme="@style/ThemeOverlay.AppCompat.ActionBar"/>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <FrameLayout
+        android:id="@+id/am_framelayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="?actionBarSize"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        app:menu="@menu/botnavmenu"
+        app:itemRippleColor="?colorPrimary"
+        app:labelVisibilityMode="labeled"
+        app:itemTextColor="@color/color2"
+        app:itemIconTint="@color/color2"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
