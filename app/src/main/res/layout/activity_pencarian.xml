@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Pencarian">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?colorSecondary">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/ap_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/ThemeOverlay.AppCompat.ActionBar">
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="12dp"
+                app:cardElevation="0dp"
+                android:backgroundTint="#EDEDED"
+                app:cardCornerRadius="24dp">
+
+                <androidx.appcompat.widget.SearchView
+                    android:id="@+id/ap_searchview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:queryHint="Cari..."
+                    app:iconifiedByDefault="false"/>
+
+            </com.google.android.material.card.MaterialCardView>
+
+        </com.google.android.material.appbar.MaterialToolbar>
+
+<!--        <com.google.android.material.appbar.MaterialToolbar-->
+<!--            android:id="@+id/ap_toolbar"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            app:navigationIcon="@drawable/ic_baseline_arrow_back_24"-->
+<!--            app:menu="@menu/toolbarcari"-->
+<!--            android:theme="@style/ThemeOverlay.AppCompat.ActionBar" />-->
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Filter"
+        android:textSize="14sp"
+        android:textColor="?colorPrimary"
+        android:textAllCaps="false"
+        app:icon="@drawable/ic_baseline_tune_24"
+        app:iconTint="?colorPrimary"
+        app:iconGravity="textStart"
+        app:strokeColor="?colorPrimary"
+        app:strokeWidth="1dp"
+        android:backgroundTint="?colorSecondary"
+        android:layout_gravity="center"/>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -13,7 +13,7 @@
 
     <item
         android:id="@+id/botnavmenu_kegiatan"
-        android:title="Kegiatan"
+        android:title="Aktifitas"
         android:icon="@drawable/ic_baseline_event_24" />
 
     <item

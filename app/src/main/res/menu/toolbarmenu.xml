@@ -5,14 +5,20 @@
 
     <item
         android:id="@+id/toolbarmenu_search"
-        android:title="Search"
+        android:title="Pencarian"
         android:icon="@drawable/ic_baseline_search_24"
         app:showAsAction="always"/>
 
     <item
         android:id="@+id/toolbarmenu_pesan"
-        android:title="Pesan"
+        android:title="Chat"
         android:icon="@drawable/ic_baseline_message_24"
+        app:showAsAction="always"/>
+
+    <item
+        android:id="@+id/toolbarmenu_buat"
+        android:title="Buat artikel"
+        android:icon="@drawable/ic_baseline_add_24"
         app:showAsAction="always"/>
 
 </menu>
