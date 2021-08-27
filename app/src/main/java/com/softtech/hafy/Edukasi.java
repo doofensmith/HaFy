@@ -5,49 +5,36 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.LinearLayout;
 
 import com.google.android.material.appbar.MaterialToolbar;
 
-public class Chat extends AppCompatActivity {
+public class Edukasi extends AppCompatActivity {
 
     //declare view
     MaterialToolbar toolbar;
-    LinearLayout test;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_chat);
+        setContentView(R.layout.activity_edukasi);
 
         //init view
-        toolbar = findViewById(R.id.ac_toolbar);
-        test = findViewById(R.id.ac_test);
+        toolbar = findViewById(R.id.ae_toolbar);
 
-        //nav toolbar
+        //nav toobar
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onBackPressed();
             }
         });
-
-        //test !!!
-        test.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Chat.this, ChatPerson.class);
-                startActivity(intent);
-            }
-        });
-
     }
 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
 
-        Intent intent = new Intent(Chat.this, MainActivity.class);
+        Intent intent = new Intent(Edukasi.this, MainActivity.class);
         startActivity(intent);
         finish();
 

@@ -5,26 +5,32 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 
 import com.google.android.material.appbar.MaterialToolbar;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-public class Chat extends AppCompatActivity {
+public class ChatPerson extends AppCompatActivity {
 
     //declare view
     MaterialToolbar toolbar;
-    LinearLayout test;
+    FloatingActionButton fabkirim;
+    EditText pesan;
+    LinearLayout test_chat_kanan;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_chat);
+        setContentView(R.layout.activity_chat_person);
 
         //init view
-        toolbar = findViewById(R.id.ac_toolbar);
-        test = findViewById(R.id.ac_test);
+        toolbar = findViewById(R.id.acp_toolbar);
+        fabkirim = findViewById(R.id.acp_fabsend);
+        pesan = findViewById(R.id.acp_ed_pesan);
+        test_chat_kanan = findViewById(R.id.acp_test_chat_kanan);
 
-        //nav toolbar
+        //toolbar nav back
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -32,12 +38,11 @@ public class Chat extends AppCompatActivity {
             }
         });
 
-        //test !!!
-        test.setOnClickListener(new View.OnClickListener() {
+        fabkirim.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Chat.this, ChatPerson.class);
-                startActivity(intent);
+                test_chat_kanan.setVisibility(View.VISIBLE);
+                pesan.setText("");
             }
         });
 
@@ -47,7 +52,7 @@ public class Chat extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
 
-        Intent intent = new Intent(Chat.this, MainActivity.class);
+        Intent intent = new Intent(ChatPerson.this, Chat.class);
         startActivity(intent);
         finish();
 

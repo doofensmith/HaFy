@@ -16,7 +16,7 @@ public class Splash extends AppCompatActivity {
         Intent intent;
 
         //kondisi intent
-        intent = new Intent(this, MainActivity.class);
+        intent = new Intent(this, Login.class);
 
         //start
         startActivity(intent);

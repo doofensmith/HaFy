@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/chatperson_vidcall"
+        android:icon="@drawable/ic_baseline_videocam_24"
+        android:title="Video Call"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/chatperson_call"
+        android:icon="@drawable/ic_baseline_local_phone_24"
+        android:title="Call"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/chatperson_lihatprofil"
+        android:title="Lihat Profil"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/chatperson_laporkan"
+        android:title="Laporkan"
+        app:showAsAction="never" />
+
+</menu>

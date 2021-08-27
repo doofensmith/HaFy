@@ -26,12 +26,12 @@ public class Pencarian extends AppCompatActivity {
         cari = findViewById(R.id.ap_searchview);
 
         //nav toolbar
-//        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                onBackPressed();
-//            }
-//        });
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
 
 
     }

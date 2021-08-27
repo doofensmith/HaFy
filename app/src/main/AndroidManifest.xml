@@ -9,7 +9,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.HaFy">
-        <activity android:name=".BuatArtikel"></activity>
+        <activity android:name=".Pembayaran"></activity>
+        <activity android:name=".Konsultasi" />
+        <activity
+            android:name=".ChatPerson"
+            android:windowSoftInputMode="adjustResize" />
+        <activity android:name=".Edukasi" />
+        <activity android:name=".BuatArtikel" />
         <activity android:name=".Chat" />
         <activity android:name=".Pencarian" />
         <activity android:name=".Akun" />
