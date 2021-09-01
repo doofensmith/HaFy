@@ -67,6 +67,7 @@
                 android:layout_marginTop="32dp">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/al_ed_email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="?colorOnSecondary"
@@ -90,6 +91,7 @@
                 app:endIconTint="@color/color1">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/al_ed_password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="?colorOnSecondary"
@@ -112,7 +114,8 @@
                     android:layout_weight="1"
                     android:text="Ingat Saya"
                     android:textSize="14sp"
-                    app:buttonTint="?colorPrimary" />
+                    app:buttonTint="?colorPrimary"
+                    android:checked="true"/>
 
                 <TextView
                     android:layout_width="wrap_content"
