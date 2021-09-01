@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "917503927552",
+    "project_id": "hafy-5dcc3",
+    "storage_bucket": "hafy-5dcc3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:917503927552:android:c60aa8767bab32c8687fe5",
+        "android_client_info": {
+          "package_name": "com.softtech.hafy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "917503927552-k9uh0ra7ui1b14m0nqaknpq5h7qch5h2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCCgt0U1IIGbneA0iiwgPQtMBeryCZpRBU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "917503927552-k9uh0ra7ui1b14m0nqaknpq5h7qch5h2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
