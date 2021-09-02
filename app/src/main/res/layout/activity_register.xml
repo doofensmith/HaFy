@@ -43,6 +43,7 @@
                 android:layout_marginTop="32dp">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/ar_ed_nama"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="?colorOnSecondary"
@@ -64,6 +65,7 @@
                 android:layout_marginTop="12dp">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/ar_ed_email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="?colorOnSecondary"
@@ -87,6 +89,7 @@
                 app:endIconTint="@color/color1">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/ar_ed_password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="?colorOnSecondary"
@@ -110,6 +113,7 @@
                 app:endIconTint="@color/color1">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/ar_ed_confpassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="?colorOnSecondary"

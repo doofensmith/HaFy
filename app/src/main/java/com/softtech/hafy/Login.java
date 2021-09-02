@@ -67,6 +67,8 @@ public class Login extends AppCompatActivity {
 
     //fungsi login
     void fun_login(String email, String password) {
+        //kondisi string kosong
+        
         auth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
