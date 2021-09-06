@@ -77,8 +77,22 @@ public class Register extends AppCompatActivity {
     void fun_daftar(String nama, String email, String password, String conf_password) {
         //kondisi string
         if (nama.isEmpty()||email.isEmpty()||password.isEmpty()||conf_password.isEmpty()) {
-
-        }else {
+            //gagal daftar
+            //tampilkan dialog gagal daftar
+            AlertDialog dialog = new AlertDialog.Builder(Register.this).create();
+            dialog.setTitle("Buat Akun Gagal");
+            dialog.setMessage("Ada data yang belum diisi.");
+            dialog.setCancelable(true);
+            dialog.show();
+        }else if (!password.equals(conf_password)) {
+            //gagal daftar
+            //tampilkan dialog gagal daftar
+            AlertDialog dialog = new AlertDialog.Builder(Register.this).create();
+            dialog.setTitle("Buat Akun Gagal");
+            dialog.setMessage("Password dan Konfimasi Password tidak sama.");
+            dialog.setCancelable(true);
+            dialog.show();
+        } else {
             //syarat registrasi terpenuhi
             auth.createUserWithEmailAndPassword(email, password)
                     .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -91,7 +105,7 @@ public class Register extends AppCompatActivity {
                                 MAkun mAkun = new MAkun(nama, email, "Pengguna", false);
 
                                 //database
-                                reference = FirebaseDatabase.getInstance().getReference().child(auth.getCurrentUser().getUid());
+                                reference = FirebaseDatabase.getInstance().getReference().child(auth.getCurrentUser().getUid()).child("Akun");
                                 reference.setValue(mAkun);
 
                                 //pindah activity

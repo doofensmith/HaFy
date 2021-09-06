@@ -68,28 +68,38 @@ public class Login extends AppCompatActivity {
     //fungsi login
     void fun_login(String email, String password) {
         //kondisi string kosong
-        
-        auth.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        //cek berhasil login
-                        if (task.isSuccessful()) {
-                            //pindah activity
-                            Intent intent = new Intent(Login.this, MainActivity.class);
-                            startActivity(intent);
-                            finish();
-                        }else {
-                            //gagal login
-                            //tampilkan dialog gagal login
-                            AlertDialog dialog = new AlertDialog.Builder(Login.this).create();
-                            dialog.setTitle("Gagal Login");
-                            dialog.setMessage(task.getException().toString());
-                            dialog.setCancelable(true);
-                            dialog.show();
+        if (email.isEmpty()||password.isEmpty()) {
+            AlertDialog dialog = new AlertDialog.Builder(Login.this).create();
+            dialog.setMessage("Email atau Password Salah!");
+            dialog.setTitle("Gagal Login");
+            dialog.setCancelable(true);
+            dialog.show();
+        }else {
+            //proses login
+            auth.signInWithEmailAndPassword(email, password)
+                    .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            //cek berhasil login
+                            if (task.isSuccessful()) {
+                                //pindah activity
+                                Intent intent = new Intent(Login.this, MainActivity.class);
+                                startActivity(intent);
+                                finish();
+                            }else {
+                                //gagal login
+                                //tampilkan dialog gagal login
+                                AlertDialog dialog = new AlertDialog.Builder(Login.this).create();
+                                dialog.setTitle("Gagal Login");
+                                dialog.setMessage(task.getException().toString());
+                                dialog.setCancelable(true);
+                                dialog.show();
+                            }
                         }
-                    }
-                });
+                    });
+        }
+
+
 
     }
 }
