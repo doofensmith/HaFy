@@ -19,11 +19,6 @@ import com.softtech.hafy.R;
 
 public class Beranda extends Fragment {
 
-    //declare view
-    MaterialCardView menukonsultasi;
-    MaterialButton btnchat;
-    MaterialCardView menuedukasi;
-
     public Beranda() {
         // Required empty public constructor
     }
@@ -33,38 +28,6 @@ public class Beranda extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_beranda, container, false);
-
-        //init view
-        menukonsultasi = rootView.findViewById(R.id.item_beranda_1_menukonsultasi);
-        btnchat = rootView.findViewById(R.id.item_beranda_3_btnchat);
-        menuedukasi = rootView.findViewById(R.id.item_beranda_1_menuedukasi);
-
-        //menukonsultasi
-        menukonsultasi.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getContext(), Konsultasi.class);
-                startActivity(intent);
-            }
-        });
-
-        //btnchat
-        btnchat.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getContext(), Pembayaran.class);
-                startActivity(intent);
-            }
-        });
-
-        //menu edukasi
-        menuedukasi.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getContext(), Edukasi.class);
-                startActivity(intent);
-            }
-        });
 
         return rootView;
     }

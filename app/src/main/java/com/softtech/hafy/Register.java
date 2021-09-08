@@ -102,11 +102,11 @@ public class Register extends AppCompatActivity {
                             if (task.isSuccessful()) {
                                 //buat profil
                                 //model akun
-                                MAkun mAkun = new MAkun(nama, email, "Pengguna", false);
+                                //MAkun mAkun = new MAkun(nama, email, "Pengguna", false);
 
                                 //database
                                 reference = FirebaseDatabase.getInstance().getReference().child(auth.getCurrentUser().getUid()).child("Akun");
-                                reference.setValue(mAkun);
+                                //reference.setValue(mAkun);
 
                                 //pindah activity
                                 Intent intent = new Intent(Register.this, MainActivity.class);

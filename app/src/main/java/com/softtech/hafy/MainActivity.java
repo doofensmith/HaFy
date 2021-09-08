@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         //init view
         botnavview = findViewById(R.id.botnavview);
         toolbar = findViewById(R.id.am_toolbar);
-        aturToolbar(toolbar,"Beranda",true,true,false);
+        aturToolbar(toolbar,"Beranda",true,true,true, false);
 
         //bot nav view on item select
         botnavview.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
@@ -41,15 +41,15 @@ public class MainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.botnavmenu_beranda:
-                        aturToolbar(toolbar,"Beranda",true,true,false);
+                        aturToolbar(toolbar,"Beranda",true,true,true, false);
                         changeFragments(new Beranda());
                         break;
                     case R.id.botnavmenu_artikel:
-                        aturToolbar(toolbar,"Artikel",false,false,true);
+                        aturToolbar(toolbar,"Artikel",false,false,false, true);
                         changeFragments(new Artikel());
                         break;
                     case R.id.botnavmenu_kegiatan:
-                        aturToolbar(toolbar,"Kegiatan",false,false,false);
+                        aturToolbar(toolbar,"Kegiatan",false,false,false,false);
                         changeFragments(new Kegiatan());
                         break;
                     case R.id.botnavmenu_akun:
@@ -105,11 +105,12 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    void aturToolbar (Toolbar toolbar, String title, boolean menu1, boolean menu2, boolean menu3) {
+    void aturToolbar (Toolbar toolbar, String title, boolean menu_cari, boolean menu_pesan, boolean menu_notif, boolean menu_buat) {
         toolbar.setTitle(title);
-        toolbar.getMenu().getItem(0).setVisible(menu1);
-        toolbar.getMenu().getItem(1).setVisible(menu2);
-        toolbar.getMenu().getItem(2).setVisible(menu3);
+        toolbar.getMenu().getItem(0).setVisible(menu_cari);
+        toolbar.getMenu().getItem(1).setVisible(menu_pesan);
+        toolbar.getMenu().getItem(2).setVisible(menu_notif);
+        toolbar.getMenu().getItem(3).setVisible(menu_buat);
     }
 
 }

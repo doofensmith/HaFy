@@ -11,14 +11,44 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/am_toolbar"
+        <com.google.android.material.appbar.CollapsingToolbarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/secondary"
-            app:title="Beranda"
-            app:menu="@menu/toolbarmenu"
-            android:theme="@style/ThemeOverlay.AppCompat.ActionBar"/>
+            app:titleEnabled="false"
+            app:contentScrim="@color/white"
+            app:layout_scrollFlags="scroll|enterAlwaysCollapsed|enterAlways">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="172dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/collapse_appbar_bg"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <include
+                    layout="@layout/grid_mainmenu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="?actionBarSize"
+                    app:layout_constraintTop_toTopOf="parent"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/am_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_collapseMode="parallax"
+                app:title="Beranda"
+                app:menu="@menu/toolbarmenu"
+                android:theme="@style/ThemeOverlay.AppCompat.ActionBar"/>
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
 
     </com.google.android.material.appbar.AppBarLayout>
 

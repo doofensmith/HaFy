@@ -16,6 +16,12 @@
         app:showAsAction="always"/>
 
     <item
+        android:id="@+id/toolbarmenu_notifikasi"
+        android:title="Notifikasi"
+        android:icon="@drawable/ic_baseline_notifications_24"
+        app:showAsAction="always"/>
+
+    <item
         android:id="@+id/toolbarmenu_buat"
         android:title="Buat artikel"
         android:icon="@drawable/ic_baseline_add_24"

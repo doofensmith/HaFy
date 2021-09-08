@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Fragments.Beranda"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:nestedScrollingEnabled="true">
 
     <!-- TODO: Update blank fragment layout -->
 <!--    <androidx.recyclerview.widget.RecyclerView-->
@@ -15,14 +16,13 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:nestedScrollingEnabled="true"
         android:scrollbars="none">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-
-            <include layout="@layout/item_beranda_1" />
 
             <include layout="@layout/item_beranda_2_item" />
 

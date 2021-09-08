@@ -1,6 +1,6 @@
 package com.softtech.hafy.Model;
 
-public class MAkun_Profesional {
+public class MAkunProfesional {
     private String key_akun_profesional;
     private String email;
     private String nama_profesional;
