@@ -3,12 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/toolbarakun_pengaturan"
+        android:id="@+id/menu_toolbar_akun_pengaturan"
         android:title="Pengaturan"
         app:showAsAction="never" />
 
     <item
-        android:id="@+id/toolbarakun_keluar"
+        android:id="@+id/menu_toolbar_akun_keluar"
         android:title="Keluar"
         app:showAsAction="never" />
 
