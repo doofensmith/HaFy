@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/menu_akun"
+        android:title="Akun">
+
+        <menu>
+
+            <item
+                android:id="@+id/menu_akun_nama"
+                android:title="Nama"
+                android:icon="@drawable/ic_baseline_person_24"
+                app:showAsAction="never" />
+
+            <item
+                android:id="@+id/menu_akun_nama2"
+                android:title="Alamat"
+                android:icon="@drawable/ic_baseline_person_24"
+                app:showAsAction="never" />
+
+            <item
+                android:id="@+id/menu_akun_nama3"
+                android:title="Nomor"
+                android:icon="@drawable/ic_baseline_person_24"
+                app:showAsAction="never" />
+
+
+        </menu>
+
+    </item>
+
+</menu>
