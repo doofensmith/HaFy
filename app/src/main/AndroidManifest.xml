@@ -20,8 +20,12 @@
         <activity android:name=".Chat" />
         <activity android:name=".Pencarian" />
         <activity android:name=".Akun" />
-        <activity android:name=".Register" />
-        <activity android:name=".Login" />
+        <activity
+            android:name=".Register"
+            android:windowSoftInputMode="adjustResize"/>
+        <activity
+            android:name=".Login"
+            android:windowSoftInputMode="adjustResize"/>
         <activity android:name=".MainActivity" />
         <activity
             android:name=".Splash"

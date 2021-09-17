@@ -4,7 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
-import android.content.DialogInterface;
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,6 +15,7 @@ import android.widget.TextView;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -21,10 +23,10 @@ import com.google.firebase.auth.FirebaseAuth;
 public class Login extends AppCompatActivity {
 
     //declare view
-    MaterialButton btnlogin;
-    TextView txbuat;
-    TextInputEditText ed_email;
-    TextInputEditText ed_password;
+    MaterialButton buttonLogin;
+    TextView textViewBuat;
+    TextInputEditText editTextEmail;
+    TextInputEditText editTextPassword;
 
     //firebase
     FirebaseAuth auth;
@@ -38,23 +40,23 @@ public class Login extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
 
         //init view
-        btnlogin = findViewById(R.id.al_btnmasuk);
-        txbuat = findViewById(R.id.al_txbuat);
-        ed_email = findViewById(R.id.al_ed_email);
-        ed_password = findViewById(R.id.al_ed_password);
+        buttonLogin = findViewById(R.id.al_btnmasuk);
+        textViewBuat = findViewById(R.id.al_txbuat);
+        editTextEmail = findViewById(R.id.al_ed_email);
+        editTextPassword = findViewById(R.id.al_ed_password);
 
         //btn login
-        btnlogin.setOnClickListener(new View.OnClickListener() {
+        buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String email = ed_email.getText().toString();
-                String password = ed_password.getText().toString();
-                fun_login(email, password);
+                String email = editTextEmail.getText().toString();
+                String password = editTextPassword.getText().toString();
+                loginAccount(Login.this, buttonLogin, email, password);
             }
         });
 
         //text buat
-        txbuat.setOnClickListener(new View.OnClickListener() {
+        textViewBuat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Login.this, Register.class);
@@ -66,15 +68,32 @@ public class Login extends AppCompatActivity {
     }
 
     //fungsi login
-    void fun_login(String email, String password) {
+    void loginAccount(Context context,View viewForSnackbar, String email, String password) {
         //kondisi string kosong
         if (email.isEmpty()||password.isEmpty()) {
-            AlertDialog dialog = new AlertDialog.Builder(Login.this).create();
-            dialog.setMessage("Email atau Password Salah!");
-            dialog.setTitle("Gagal Login");
-            dialog.setCancelable(true);
-            dialog.show();
+
+            Snackbar snackbar = Snackbar.make(viewForSnackbar,"! Email atau Password salah.", Snackbar.LENGTH_LONG);
+            snackbar.setAction("Ok", new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    //
+                }
+            });
+            snackbar.show();
+
+//            AlertDialog dialog = new AlertDialog.Builder(Login.this).create();
+//            dialog.setMessage("Email atau Password Salah!");
+//            dialog.setTitle("Gagal Login");
+//            dialog.setCancelable(true);
+//            dialog.show();
         }else {
+            //Progress dialog
+            ProgressDialog progressDialog = new ProgressDialog(context);
+            progressDialog.setTitle("Loging In");
+            progressDialog.setMessage("Account login in progress...");
+            progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+            progressDialog.show();
+
             //proses login
             auth.signInWithEmailAndPassword(email, password)
                     .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -85,8 +104,12 @@ public class Login extends AppCompatActivity {
                                 //pindah activity
                                 Intent intent = new Intent(Login.this, MainActivity.class);
                                 startActivity(intent);
+                                //off progress dialog
+                                progressDialog.dismiss();
                                 finish();
                             }else {
+                                //off progress dialog
+                                progressDialog.dismiss();
                                 //gagal login
                                 //tampilkan dialog gagal login
                                 AlertDialog dialog = new AlertDialog.Builder(Login.this).create();

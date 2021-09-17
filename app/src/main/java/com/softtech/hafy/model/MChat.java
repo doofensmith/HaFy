@@ -1,4 +1,4 @@
-package com.softtech.hafy.Model;
+package com.softtech.hafy.model;
 
 public class MChat {
     //atribut

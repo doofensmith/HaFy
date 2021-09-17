@@ -1,4 +1,4 @@
-package com.softtech.hafy.Fragments;
+package com.softtech.hafy.fragments;
 
 import android.os.Bundle;
 
@@ -10,9 +10,10 @@ import android.view.ViewGroup;
 
 import com.softtech.hafy.R;
 
-public class Kegiatan extends Fragment {
 
-    public Kegiatan() {
+public class Artikel extends Fragment {
+
+    public Artikel() {
         // Required empty public constructor
     }
 
@@ -20,6 +21,6 @@ public class Kegiatan extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_kegiatan, container, false);
+        return inflater.inflate(R.layout.fragment_artikel, container, false);
     }
 }

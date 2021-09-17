@@ -1,6 +1,5 @@
-package com.softtech.hafy.Fragments;
+package com.softtech.hafy.fragments;
 
-import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -14,11 +13,6 @@ import android.view.WindowManager;
 
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.MaterialToolbar;
-import com.google.android.material.button.MaterialButton;
-import com.google.android.material.card.MaterialCardView;
-import com.softtech.hafy.Edukasi;
-import com.softtech.hafy.Konsultasi;
-import com.softtech.hafy.Pembayaran;
 import com.softtech.hafy.R;
 
 

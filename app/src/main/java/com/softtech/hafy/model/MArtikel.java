@@ -1,7 +1,4 @@
-package com.softtech.hafy.Model;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+package com.softtech.hafy.model;
 
 public class MArtikel {
     //atribut
