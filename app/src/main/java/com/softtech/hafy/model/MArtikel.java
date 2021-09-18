@@ -2,71 +2,91 @@ package com.softtech.hafy.model;
 
 public class MArtikel {
     //atribut
-    private String key_artikel;
-    private String judul_artikel;
-    private String kategori_artikel;
-    private Object isi_artikel;
-    private String penulis_artikel;
-    private  String tanggal_terbit;
+    private String keyArticle;
+    private String articleTitle;
+    private String articleCategory;
+    private String articleImageUrl;
+    private Object articleContent;
+    private String articleWriter;
+    private String datePublished;
+    private Boolean isFeatured;
 
     public MArtikel() {
         //
     }
 
-    public MArtikel(String key_artikel, String judul_artikel, String kategori_artikel, Object isi_artikel, String penulis_artikel, String tanggal_terbit) {
-        this.key_artikel = key_artikel;
-        this.judul_artikel = judul_artikel;
-        this.kategori_artikel = kategori_artikel;
-        this.isi_artikel = isi_artikel;
-        this.penulis_artikel = penulis_artikel;
-        this.tanggal_terbit = tanggal_terbit;
+    public MArtikel(String keyArticle, String articleTitle, String articleCategory, String articleImageUrl, Object articleContent, String articleWriter, String datePublished, Boolean isFeatured) {
+        this.keyArticle = keyArticle;
+        this.articleTitle = articleTitle;
+        this.articleCategory = articleCategory;
+        this.articleImageUrl = articleImageUrl;
+        this.articleContent = articleContent;
+        this.articleWriter = articleWriter;
+        this.datePublished = datePublished;
+        this.isFeatured = isFeatured;
     }
 
-    public String getKey_artikel() {
-        return key_artikel;
+    public String getKeyArticle() {
+        return keyArticle;
     }
 
-    public void setKey_artikel(String key_artikel) {
-        this.key_artikel = key_artikel;
+    public void setKeyArticle(String keyArticle) {
+        this.keyArticle = keyArticle;
     }
 
-    public String getJudul_artikel() {
-        return judul_artikel;
+    public String getArticleTitle() {
+        return articleTitle;
     }
 
-    public void setJudul_artikel(String judul_artikel) {
-        this.judul_artikel = judul_artikel;
+    public void setArticleTitle(String articleTitle) {
+        this.articleTitle = articleTitle;
     }
 
-    public String getKategori_artikel() {
-        return kategori_artikel;
+    public String getArticleCategory() {
+        return articleCategory;
     }
 
-    public void setKategori_artikel(String kategori_artikel) {
-        this.kategori_artikel = kategori_artikel;
+    public void setArticleCategory(String articleCategory) {
+        this.articleCategory = articleCategory;
     }
 
-    public Object getIsi_artikel() {
-        return isi_artikel;
+    public String getArticleImageUrl() {
+        return articleImageUrl;
     }
 
-    public void setIsi_artikel(Object isi_artikel) {
-        this.isi_artikel = isi_artikel;
+    public void setArticleImageUrl(String articleImageUrl) {
+        this.articleImageUrl = articleImageUrl;
     }
 
-    public String getPenulis_artikel() {
-        return penulis_artikel;
+    public Object getArticleContent() {
+        return articleContent;
     }
 
-    public void setPenulis_artikel(String penulis_artikel) {
-        this.penulis_artikel = penulis_artikel;
+    public void setArticleContent(Object articleContent) {
+        this.articleContent = articleContent;
     }
 
-    public String getTanggal_terbit() {
-        return tanggal_terbit;
+    public String getArticleWriter() {
+        return articleWriter;
     }
 
-    public void setTanggal_terbit(String tanggal_terbit) {
-        this.tanggal_terbit = tanggal_terbit;
+    public void setArticleWriter(String articleWriter) {
+        this.articleWriter = articleWriter;
+    }
+
+    public String getDatePublished() {
+        return datePublished;
+    }
+
+    public void setDatePublished(String datePublished) {
+        this.datePublished = datePublished;
+    }
+
+    public Boolean getFeatured() {
+        return isFeatured;
+    }
+
+    public void setFeatured(Boolean featured) {
+        isFeatured = featured;
     }
 }

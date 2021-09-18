@@ -14,9 +14,10 @@
         <activity
             android:name=".ChatPerson"
             android:windowSoftInputMode="adjustResize" />
-        <activity android:name=".Edukasi"
-            />
-        <activity android:name=".BuatArtikel" />
+        <activity android:name=".Edukasi" />
+        <activity
+            android:name=".BuatArtikel"
+            android:windowSoftInputMode="adjustResize"/>
         <activity android:name=".Chat" />
         <activity android:name=".Pencarian" />
         <activity android:name=".Akun" />

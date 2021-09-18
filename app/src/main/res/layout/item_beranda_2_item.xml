@@ -8,9 +8,11 @@
     app:cardCornerRadius="16dp"
     app:cardElevation="0dp"
     android:clickable="true"
-    android:foreground="?selectableItemBackground">
+    android:foreground="?selectableItemBackground"
+    android:id="@+id/featured_article_container">
 
     <ImageView
+        android:id="@+id/featured_article_image"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:src="@drawable/test_img"
@@ -23,6 +25,7 @@
         android:layout_margin="8dp">
 
         <TextView
+            android:id="@+id/featured_article_tag"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Terpopuler"
@@ -43,6 +46,7 @@
         android:paddingVertical="8dp">
 
         <TextView
+            android:id="@+id/featured_article_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Ini dia alasan yang membuat suami bertah dirumah"
