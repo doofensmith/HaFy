@@ -41,6 +41,7 @@
                 android:text="Article Headline"
                 android:textSize="14sp"
                 android:textStyle="bold"
+                android:textColor="?colorOnSecondary"
                 android:maxLines="2"
                 android:ellipsize="end"/>
 

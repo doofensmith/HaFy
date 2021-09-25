@@ -8,10 +8,16 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
+    //light theme
     <color name="primary">#d50033</color>
     <color name="p_light">#ff525d</color>
     <color name="p_dark">#9b000e</color>
     <color name="secondary">#ffffff</color>
 
     <color name="bg_abu">#ececec</color>
+
+    //dark theme
+    <color name="night_primary">#212121</color>
+    <color name="night_p_dark">#000000</color>
+    <color name="night_p_light">#484848</color>
 </resources>

@@ -13,9 +13,9 @@ import com.softtech.hafy.R;
 public class VHArticle extends RecyclerView.ViewHolder {
 
     //declare view
-    LinearLayout container;
-    ImageView articleImage;
-    TextView articleTitle;
+    public LinearLayout container;
+    public ImageView articleImage;
+    public TextView articleTitle;
 
     public VHArticle(@NonNull View itemView) {
         super(itemView);
