@@ -16,7 +16,6 @@
         android:id="@+id/featured_article_image"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/test_img"
         android:scaleType="centerCrop" />
 
     <com.google.android.material.card.MaterialCardView
@@ -50,7 +49,7 @@
             android:id="@+id/featured_article_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Ini dia alasan yang membuat suami bertah dirumah"
+            android:text="articleTitle"
             android:maxLines="1"
             android:ellipsize="end"
             android:textColor="?colorOnSecondary"

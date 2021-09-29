@@ -62,7 +62,7 @@
         android:orientation="vertical">
 
         <include
-            layout="@layout/item_beranda_3_item" />
+            layout="@layout/item_beranda_proaccount_item" />
 
     </LinearLayout>
 

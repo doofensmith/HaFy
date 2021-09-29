@@ -15,23 +15,16 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 
-import com.firebase.ui.database.FirebaseRecyclerAdapter;
-import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.softtech.hafy.BuatArtikel;
 import com.softtech.hafy.R;
-import com.softtech.hafy.adapter.AArticle;
 import com.softtech.hafy.adapter.AArticleContainer;
-import com.softtech.hafy.model.MArtikel;
-import com.softtech.hafy.model.MArtikelTag;
-import com.softtech.hafy.viewholder.VHAccount;
-import com.softtech.hafy.viewholder.VHArticle;
+import com.softtech.hafy.model.MArticleTag;
 import com.softtech.hafy.viewholder.VHArticleContainer;
 
 
@@ -46,8 +39,8 @@ public class Artikel extends Fragment {
 
     //firebase
     FirebaseAuth auth;
-    FirestoreRecyclerOptions<MArtikelTag> options;
-    FirestoreRecyclerAdapter<MArtikelTag, VHArticleContainer> adapter;
+    FirestoreRecyclerOptions<MArticleTag> options;
+    FirestoreRecyclerAdapter<MArticleTag, VHArticleContainer> adapter;
     RecyclerView recyclerView;
     Query query;
 
@@ -79,9 +72,9 @@ public class Artikel extends Fragment {
         auth = FirebaseAuth.getInstance();
         query = FirebaseFirestore.getInstance().collection("article_tag");
         //option
-        options = new FirestoreRecyclerOptions.Builder<MArtikelTag>()
+        options = new FirestoreRecyclerOptions.Builder<MArticleTag>()
                 .setLifecycleOwner(Artikel.this)
-                .setQuery(query,MArtikelTag.class).build();
+                .setQuery(query, MArticleTag.class).build();
         //adapter
         adapter = new AArticleContainer(options);
         //recycler view

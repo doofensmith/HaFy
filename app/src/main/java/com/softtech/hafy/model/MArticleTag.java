@@ -1,14 +1,14 @@
 package com.softtech.hafy.model;
 
-public class MArtikelTag {
+public class MArticleTag {
     
     private String articleTag;
 
-    public MArtikelTag() {
+    public MArticleTag() {
         //
     }
 
-    public MArtikelTag(String articleTag) {
+    public MArticleTag(String articleTag) {
         this.articleTag = articleTag;
     }
 

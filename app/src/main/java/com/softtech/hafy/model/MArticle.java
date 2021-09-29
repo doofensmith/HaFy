@@ -1,6 +1,6 @@
 package com.softtech.hafy.model;
 
-public class MArtikel {
+public class MArticle {
     //atribut
     private String keyArticle;
     private String articleTitle;
@@ -12,11 +12,11 @@ public class MArtikel {
     private Boolean isFeatured;
     private String articleTag;
 
-    public MArtikel() {
+    public MArticle() {
         //
     }
 
-    public MArtikel(String keyArticle, String articleTitle, String articleCategory, String articleImageUrl, Object articleContent, String articleWriter, String datePublished, Boolean isFeatured, String articleTag) {
+    public MArticle(String keyArticle, String articleTitle, String articleCategory, String articleImageUrl, Object articleContent, String articleWriter, String datePublished, Boolean isFeatured, String articleTag) {
         this.keyArticle = keyArticle;
         this.articleTitle = articleTitle;
         this.articleCategory = articleCategory;

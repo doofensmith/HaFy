@@ -22,7 +22,7 @@ public class Konsultasi extends AppCompatActivity {
 
         //init view
         toolbar = findViewById(R.id.ak_toolbar);
-        btn_test = findViewById(R.id.item_beranda_3_btnchat);
+        //btn_test = findViewById(R.id.item_beranda_3_btnchat);
 
         //nav toolbar
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
@@ -32,14 +32,14 @@ public class Konsultasi extends AppCompatActivity {
             }
         });
 
-        btn_test.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Konsultasi.this, Pembayaran.class);
-                startActivity(intent);
-                finish();
-            }
-        });
+//        btn_test.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(Konsultasi.this, Pembayaran.class);
+//                startActivity(intent);
+//                finish();
+//            }
+//        });
     }
 
     @Override

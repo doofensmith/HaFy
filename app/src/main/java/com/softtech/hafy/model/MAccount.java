@@ -13,6 +13,11 @@ public class MAccount {
     private String gender;
     private String bio;
     private String about;
+    private String address;
+    private String job;
+    private String education;
+    private String rating;
+    private String price;
 
 
     //constructor
@@ -20,7 +25,7 @@ public class MAccount {
         //
     }
 
-    public MAccount(String keyAccount, String userName, String email, String accountType, Boolean isVerified, String phoneNumber, String birthDate, String gender, String bio, String about) {
+    public MAccount(String keyAccount, String userName, String email, String accountType, Boolean isVerified, String phoneNumber, String birthDate, String gender, String bio, String about, String address, String job, String education, String rating, String price) {
         this.keyAccount = keyAccount;
         this.userName = userName;
         this.email = email;
@@ -31,6 +36,11 @@ public class MAccount {
         this.gender = gender;
         this.bio = bio;
         this.about = about;
+        this.address = address;
+        this.job = job;
+        this.education = education;
+        this.rating = rating;
+        this.price = price;
     }
 
     public String getKeyAccount() {
@@ -111,5 +121,45 @@ public class MAccount {
 
     public void setAbout(String about) {
         this.about = about;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getJob() {
+        return job;
+    }
+
+    public void setJob(String job) {
+        this.job = job;
+    }
+
+    public String getEducation() {
+        return education;
+    }
+
+    public void setEducation(String education) {
+        this.education = education;
+    }
+
+    public String getRating() {
+        return rating;
+    }
+
+    public void setRating(String rating) {
+        this.rating = rating;
+    }
+
+    public String getPrice() {
+        return price;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
     }
 }

@@ -13,10 +13,10 @@ import com.softtech.hafy.R;
 public class VHFeaturedArticle extends RecyclerView.ViewHolder {
 
     //declare item view
-    MaterialCardView articleContainer;
-    TextView articleTag;
-    TextView articleTitle;
-    ImageView articleImage;
+    public MaterialCardView articleContainer;
+    public TextView articleTag;
+    public TextView articleTitle;
+    public ImageView articleImage;
 
     public VHFeaturedArticle(@NonNull View itemView) {
         super(itemView);

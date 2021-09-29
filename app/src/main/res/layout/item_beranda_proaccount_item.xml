@@ -6,6 +6,7 @@
     android:orientation="vertical">
 
     <com.google.android.material.card.MaterialCardView
+        android:id="@+id/item_beranda_proaccount_item_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardElevation="4dp"
@@ -34,10 +35,10 @@
                     android:layout_gravity="center_vertical">
 
                     <ImageView
+                        android:id="@+id/item_beranda_proaccount_item_pic"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/foto_agung"/>
+                        android:scaleType="centerCrop"/>
 
                 </com.google.android.material.card.MaterialCardView>
 
@@ -49,9 +50,10 @@
                     android:layout_marginStart="12dp">
 
                     <TextView
+                        android:id="@+id/item_beranda_proaccount_item_name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Bernardus Agung Permadi S. Psi"
+                        android:text="accountName"
                         android:textSize="16sp"
                         android:textStyle="bold"
                         android:textColor="?colorOnSecondary"
@@ -60,9 +62,10 @@
                         android:layout_marginTop="4dp"/>
 
                     <TextView
+                        android:id="@+id/item_beranda_proaccount_item_job"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Psikologi Kesehatan Mental"
+                        android:text="accountJob"
                         android:textSize="14sp"
                         android:textColor="@android:color/darker_gray" />
 
@@ -73,6 +76,7 @@
                         android:layout_marginTop="8dp">
 
                         <TextView
+                            android:id="@+id/item_beranda_proaccount_item_rating"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="4.8"
@@ -84,6 +88,7 @@
                             android:drawablePadding="4dp"/>
 
                         <TextView
+                            android:id="@+id/item_beranda_proaccount_item_workingexp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="3 tahun"
@@ -115,6 +120,7 @@
                 android:layout_marginTop="8dp">
 
                 <TextView
+                    android:id="@+id/item_beranda_proaccount_item_ontime"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="09:00 - 14:00"
@@ -127,6 +133,7 @@
                     android:layout_gravity="center_vertical"/>
 
                 <TextView
+                    android:id="@+id/item_beranda_proaccount_item_price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -137,7 +144,7 @@
                     android:layout_marginStart="12dp"/>
 
                 <com.google.android.material.button.MaterialButton
-                    android:id="@+id/item_beranda_3_btnchat"
+                    android:id="@+id/item_beranda_proaccount_item_btnchat"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Chat" />

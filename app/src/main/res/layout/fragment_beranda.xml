@@ -71,10 +71,18 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <ScrollView
+<!--    <androidx.core.widget.NestedScrollView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">-->
+
+<!--        -->
+
+<!--    </androidx.core.widget.NestedScrollView>-->
+
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:nestedScrollingEnabled="true"
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
         android:scrollbars="none">
 
@@ -83,137 +91,19 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <include layout="@layout/item_beranda_2_item" />
+            <include layout="@layout/item_beranda_featuredarticle_container" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginHorizontal="20dp"
-                android:layout_marginTop="12dp">
+            <include layout="@layout/item_beranda_proaccount_container" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Saran psikolog"
-                    android:textColor="?colorOnSecondary"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
+            <include layout="@layout/item_beranda_edukasi_container" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="lihat semua"
-                    android:textSize="12sp"
-                    android:textColor="?colorPrimary"
-                    android:textStyle="bold"
-                    android:clickable="true"
-                    android:foreground="?selectableItemBackground" />
-
-            </LinearLayout>
-
-            <include layout="@layout/item_beranda_3_item" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginHorizontal="20dp"
-                android:layout_marginTop="12dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Topik edukasi"
-                    android:textColor="?colorOnSecondary"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="lihat semua"
-                    android:textSize="12sp"
-                    android:textColor="?colorPrimary"
-                    android:textStyle="bold"
-                    android:clickable="true"
-                    android:foreground="?selectableItemBackground" />
-
-            </LinearLayout>
-
-            <HorizontalScrollView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:scrollbars="none">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <include layout="@layout/item_beranda_4_item" />
-                    <include layout="@layout/item_beranda_4_item" />
-                    <include layout="@layout/item_beranda_4_item" />
-                    <include layout="@layout/item_beranda_4_item" />
-                    <include layout="@layout/item_beranda_4_item" />
-
-                </LinearLayout>
-
-            </HorizontalScrollView>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginHorizontal="20dp"
-                android:layout_marginTop="12dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Artikel terbaru"
-                    android:textColor="?colorOnSecondary"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="lihat semua"
-                    android:textSize="12sp"
-                    android:textColor="?colorPrimary"
-                    android:textStyle="bold"
-                    android:clickable="true"
-                    android:foreground="?selectableItemBackground" />
-
-            </LinearLayout>
-
-            <HorizontalScrollView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:scrollbars="none">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <include layout="@layout/item_beranda_5_item" />
-                    <include layout="@layout/item_beranda_5_item" />
-                    <include layout="@layout/item_beranda_5_item" />
-                    <include layout="@layout/item_beranda_5_item" />
-                    <include layout="@layout/item_beranda_5_item" />
-
-                </LinearLayout>
-
-            </HorizontalScrollView>
+            <include layout="@layout/item_beranda_article_container" />
 
         </LinearLayout>
 
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
+
+
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

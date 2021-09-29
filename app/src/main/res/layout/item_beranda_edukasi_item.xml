@@ -9,14 +9,17 @@
     android:layout_margin="8dp"
     android:clickable="true"
     android:backgroundTint="@android:color/darker_gray"
-    android:foreground="?selectableItemBackground">
+    android:foreground="?selectableItemBackground"
+    android:id="@+id/item_beranda_edukasi_item_container">
 
     <ImageView
+        android:id="@+id/item_beranda_edukasi_item_image"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="centerCrop" />
 
     <TextView
+        android:id="@+id/item_beranda_edukasi_item_category"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Kategori"

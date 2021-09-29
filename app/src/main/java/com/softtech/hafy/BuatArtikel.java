@@ -17,11 +17,10 @@ import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.softtech.hafy.model.MAccount;
-import com.softtech.hafy.model.MArtikel;
+import com.softtech.hafy.model.MArticle;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -102,17 +101,17 @@ public class BuatArtikel extends AppCompatActivity {
                     progressDialog.show();
 
                     //model
-                    MArtikel mArtikel = new MArtikel();
-                    mArtikel.setKeyArticle(keyArticle);
-                    mArtikel.setArticleTitle(articleTitle);
-                    mArtikel.setArticleContent(articleContent);
-                    mArtikel.setDatePublished(timeStamp);
-                    mArtikel.setArticleWriter(articleWriter);
-                    mArtikel.setFeatured(false);
-                    mArtikel.setArticleTag("Terbaru");
+                    MArticle mArticle = new MArticle();
+                    mArticle.setKeyArticle(keyArticle);
+                    mArticle.setArticleTitle(articleTitle);
+                    mArticle.setArticleContent(articleContent);
+                    mArticle.setDatePublished(timeStamp);
+                    mArticle.setArticleWriter(articleWriter);
+                    mArticle.setFeatured(false);
+                    mArticle.setArticleTag("Terbaru");
 
                     //save data
-                    firestore.collection("articles").document(keyArticle).set(mArtikel)
+                    firestore.collection("articles").document(keyArticle).set(mArticle)
                             .addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
