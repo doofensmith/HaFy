@@ -8,6 +8,7 @@
     app:cardCornerRadius="16dp"
     app:cardElevation="0dp"
     android:clickable="true"
+    android:backgroundTint="@android:color/darker_gray"
     android:foreground="?selectableItemBackground"
     android:id="@+id/featured_article_container">
 

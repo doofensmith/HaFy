@@ -11,13 +11,16 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.softtech.hafy.model.MAccount;
 import com.softtech.hafy.model.MArtikel;
 
 import java.text.DateFormat;
@@ -54,12 +57,22 @@ public class BuatArtikel extends AppCompatActivity {
         //toolbar navigation
         toolbar.setNavigationOnClickListener(toolbarNavigationClick());
 
-        //button post
-        buttonPost.setOnClickListener(buttonPost(BuatArtikel.this ,editTextTitle, editTextContent));
+        //get account info
+        firestore.collection("account").document(auth.getUid()).get()
+                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        MAccount mAccount = documentSnapshot.toObject(MAccount.class);
+
+                        //button post
+                        buttonPost.setOnClickListener(buttonPost(BuatArtikel.this ,mAccount,editTextTitle, editTextContent));
+                    }
+                });
+
     }
 
     //button post function
-    View.OnClickListener buttonPost(Context context, TextInputEditText editTextTitle, TextInputEditText editTextContent) {
+    View.OnClickListener buttonPost(Context context,MAccount mAccount, TextInputEditText editTextTitle, TextInputEditText editTextContent) {
         return new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -69,6 +82,8 @@ public class BuatArtikel extends AppCompatActivity {
                 String keyArticle = firestore.collection("articles").document().getId();
                 DateFormat dateFormat = new SimpleDateFormat("EEE, dd/MM/yyyy, HH:mm");
                 String timeStamp = dateFormat.format(Calendar.getInstance().getTime());
+                String articleWriter = mAccount.getUserName();
+
 
                 //check edit text
                 if (articleTitle.isEmpty()||articleContent.isEmpty()) {
@@ -92,6 +107,9 @@ public class BuatArtikel extends AppCompatActivity {
                     mArtikel.setArticleTitle(articleTitle);
                     mArtikel.setArticleContent(articleContent);
                     mArtikel.setDatePublished(timeStamp);
+                    mArtikel.setArticleWriter(articleWriter);
+                    mArtikel.setFeatured(false);
+                    mArtikel.setArticleTag("Terbaru");
 
                     //save data
                     firestore.collection("articles").document(keyArticle).set(mArtikel)

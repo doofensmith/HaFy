@@ -30,6 +30,7 @@ public class AArticle extends FirestoreRecyclerAdapter<MArtikel, VHArticle> {
     @Override
     protected void onBindViewHolder(@NonNull VHArticle holder, int position, @NonNull MArtikel model) {
         holder.articleTitle.setText(model.getArticleTitle());
+        holder.articleWriterAndDate.setText(model.getArticleWriter()+" · "+model.getDatePublished());
     }
 
     @NonNull

@@ -10,12 +10,13 @@ public class MArtikel {
     private String articleWriter;
     private String datePublished;
     private Boolean isFeatured;
+    private String articleTag;
 
     public MArtikel() {
         //
     }
 
-    public MArtikel(String keyArticle, String articleTitle, String articleCategory, String articleImageUrl, Object articleContent, String articleWriter, String datePublished, Boolean isFeatured) {
+    public MArtikel(String keyArticle, String articleTitle, String articleCategory, String articleImageUrl, Object articleContent, String articleWriter, String datePublished, Boolean isFeatured, String articleTag) {
         this.keyArticle = keyArticle;
         this.articleTitle = articleTitle;
         this.articleCategory = articleCategory;
@@ -24,6 +25,7 @@ public class MArtikel {
         this.articleWriter = articleWriter;
         this.datePublished = datePublished;
         this.isFeatured = isFeatured;
+        this.articleTag = articleTag;
     }
 
     public String getKeyArticle() {
@@ -88,5 +90,13 @@ public class MArtikel {
 
     public void setFeatured(Boolean featured) {
         isFeatured = featured;
+    }
+
+    public String getArticleTag() {
+        return articleTag;
+    }
+
+    public void setArticleTag(String articleTag) {
+        this.articleTag = articleTag;
     }
 }

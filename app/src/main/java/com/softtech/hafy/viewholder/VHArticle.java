@@ -16,6 +16,8 @@ public class VHArticle extends RecyclerView.ViewHolder {
     public LinearLayout container;
     public ImageView articleImage;
     public TextView articleTitle;
+    public TextView articleWriterAndDate;
+    public ImageView articleWriterImage;
 
     public VHArticle(@NonNull View itemView) {
         super(itemView);
@@ -24,5 +26,7 @@ public class VHArticle extends RecyclerView.ViewHolder {
         container = itemView.findViewById(R.id.item_article_container);
         articleImage = itemView.findViewById(R.id.item_article_image);
         articleTitle = itemView.findViewById(R.id.item_article_title);
+        articleWriterImage = itemView.findViewById(R.id.item_article_writer_image);
+        articleWriterAndDate = itemView.findViewById(R.id.item_article_writer_date);
     }
 }
