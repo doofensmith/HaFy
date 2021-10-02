@@ -9,8 +9,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:background="@drawable/shape_chat_kanan"
-        android:layout_gravity="end"
+        android:background="@drawable/shape_chat_kiri"
+        android:layout_gravity="start"
         android:padding="12dp"
         android:layout_marginTop="12dp"
         android:layout_marginHorizontal="12dp">

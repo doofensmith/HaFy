@@ -1,5 +1,7 @@
 package com.softtech.hafy;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -9,16 +11,22 @@ import android.view.View;
 
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.appbar.MaterialToolbar;
-import com.google.android.material.button.MaterialButton;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
-import com.softtech.hafy.adapter.AProfessionalAccount;
-import com.softtech.hafy.model.MAccount;
-import com.softtech.hafy.viewholder.VHProfessionalAccount;
+import com.google.firebase.firestore.QuerySnapshot;
+import com.softtech.hafy.adapter.AChatRoom;
+import com.softtech.hafy.model.MChatPerson;
+import com.softtech.hafy.model.MChatRoom;
+import com.softtech.hafy.viewholder.VHChatRoom;
 
-public class Konsultasi extends AppCompatActivity {
+public class ChatRoom extends AppCompatActivity {
 
     //declare view
     MaterialToolbar toolbar;
@@ -26,22 +34,22 @@ public class Konsultasi extends AppCompatActivity {
     //firebase
     FirebaseAuth auth;
     FirebaseFirestore firestore;
-    FirestoreRecyclerOptions<MAccount> options;
-    FirestoreRecyclerAdapter<MAccount, VHProfessionalAccount> adapter;
-    Query query;
+    FirestoreRecyclerOptions<MChatRoom> options;
+    FirestoreRecyclerAdapter<MChatRoom, VHChatRoom> adapter;
     RecyclerView recyclerView;
+    Query query;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_konsultasi);
+        setContentView(R.layout.activity_chat);
 
-        //auth db
+        //auth n db
         auth = FirebaseAuth.getInstance();
         firestore = FirebaseFirestore.getInstance();
 
         //init view
-        toolbar = findViewById(R.id.ak_toolbar);
+        toolbar = findViewById(R.id.ac_toolbar);
 
         //nav toolbar
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
@@ -50,20 +58,22 @@ public class Konsultasi extends AppCompatActivity {
                 onBackPressed();
             }
         });
+        
 
-        //INFLTE DATA
+
+        //INFLATE CHAT ROOM
         //query
-        query = firestore.collection("account").whereEqualTo("accountType","Konsultan");
+        query = firestore.collection("chat_room");
         //option
-        options = new FirestoreRecyclerOptions.Builder<MAccount>()
-                .setLifecycleOwner(Konsultasi.this)
-                .setQuery(query,MAccount.class).build();
+        options = new FirestoreRecyclerOptions.Builder<MChatRoom>()
+                .setLifecycleOwner(ChatRoom.this)
+                .setQuery(query, MChatRoom.class)
+                .build();
         //adapter
-        adapter = new AProfessionalAccount(options,Konsultasi.this);
-        //recyler view
-        recyclerView = findViewById(R.id.ak_recyclerview);
+        adapter = new AChatRoom(options);
+        //recyclerview
+        recyclerView = findViewById(R.id.act_chat_room_recyclerview);
         recyclerView.setAdapter(adapter);
-
 
     }
 
@@ -71,7 +81,7 @@ public class Konsultasi extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
 
-        Intent intent = new Intent(Konsultasi.this, MainActivity.class);
+        Intent intent = new Intent(ChatRoom.this, MainActivity.class);
         startActivity(intent);
         finish();
 

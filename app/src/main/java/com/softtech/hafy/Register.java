@@ -141,6 +141,7 @@ public class Register extends AppCompatActivity {
                                 mAccount.setUserName(name);
                                 mAccount.setEmail(email);
                                 mAccount.setVerified(false);
+                                mAccount.setProfessional(false);
                                 mAccount.setAccountType("User");
 
                                 //database
@@ -158,7 +159,7 @@ public class Register extends AppCompatActivity {
                                         else {
                                             //off progress dialog
                                             progressDialog.dismiss();
-                                            //tampil pesan rror
+                                            //tampil message rror
                                             Toast.makeText(Register.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                                         }
                                     }

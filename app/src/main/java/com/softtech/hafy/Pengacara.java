@@ -10,7 +10,6 @@ import android.view.View;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.material.appbar.MaterialToolbar;
-import com.google.android.material.button.MaterialButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
@@ -18,7 +17,7 @@ import com.softtech.hafy.adapter.AProfessionalAccount;
 import com.softtech.hafy.model.MAccount;
 import com.softtech.hafy.viewholder.VHProfessionalAccount;
 
-public class Konsultasi extends AppCompatActivity {
+public class Pengacara extends AppCompatActivity {
 
     //declare view
     MaterialToolbar toolbar;
@@ -34,14 +33,14 @@ public class Konsultasi extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_konsultasi);
+        setContentView(R.layout.activity_pengacara);
 
         //auth db
         auth = FirebaseAuth.getInstance();
         firestore = FirebaseFirestore.getInstance();
 
         //init view
-        toolbar = findViewById(R.id.ak_toolbar);
+        toolbar = findViewById(R.id.act_pengacara_toolbar);
 
         //nav toolbar
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
@@ -53,17 +52,16 @@ public class Konsultasi extends AppCompatActivity {
 
         //INFLTE DATA
         //query
-        query = firestore.collection("account").whereEqualTo("accountType","Konsultan");
+        query = firestore.collection("account").whereEqualTo("accountType","Pengacara");
         //option
         options = new FirestoreRecyclerOptions.Builder<MAccount>()
-                .setLifecycleOwner(Konsultasi.this)
+                .setLifecycleOwner(Pengacara.this)
                 .setQuery(query,MAccount.class).build();
         //adapter
-        adapter = new AProfessionalAccount(options,Konsultasi.this);
+        adapter = new AProfessionalAccount(options,Pengacara.this);
         //recyler view
-        recyclerView = findViewById(R.id.ak_recyclerview);
+        recyclerView = findViewById(R.id.act_pengacara_recyclerview);
         recyclerView.setAdapter(adapter);
-
 
     }
 
@@ -71,7 +69,7 @@ public class Konsultasi extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
 
-        Intent intent = new Intent(Konsultasi.this, MainActivity.class);
+        Intent intent = new Intent(Pengacara.this, MainActivity.class);
         startActivity(intent);
         finish();
 

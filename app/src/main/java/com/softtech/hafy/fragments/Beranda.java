@@ -1,5 +1,6 @@
 package com.softtech.hafy.fragments;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -18,9 +19,13 @@ import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.MaterialToolbar;
+import com.google.android.material.card.MaterialCardView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
+import com.softtech.hafy.Edukasi;
+import com.softtech.hafy.Konsultasi;
+import com.softtech.hafy.Pengacara;
 import com.softtech.hafy.R;
 import com.softtech.hafy.adapter.AEducationCategory;
 import com.softtech.hafy.adapter.AFeaturedArticle;
@@ -34,6 +39,8 @@ import com.softtech.hafy.viewholder.VHFeaturedArticle;
 import com.softtech.hafy.viewholder.VHHomeArticle;
 import com.softtech.hafy.viewholder.VHProfessionalAccount;
 
+import java.util.Arrays;
+
 
 public class Beranda extends Fragment {
 
@@ -45,6 +52,9 @@ public class Beranda extends Fragment {
     AppBarLayout appBarLayout;
     MaterialToolbar collapsingToolbar;
     MaterialToolbar toolbar;
+    MaterialCardView menuKonsultasi;
+    MaterialCardView menuPengacara;
+    MaterialCardView menuEdukasi;
 
     //firebase
     FirebaseAuth auth;
@@ -84,6 +94,9 @@ public class Beranda extends Fragment {
         appBarLayout = rootView.findViewById(R.id.fr_beranda_appbar);
         collapsingToolbar = rootView.findViewById(R.id.fr_beranda_coll_toolbar);
         toolbar = rootView.findViewById(R.id.fr_beranda_toolbar);
+        menuKonsultasi = rootView.findViewById(R.id.menu_beranda_konsultasi);
+        menuPengacara = rootView.findViewById(R.id.menu_beranda_pengacara);
+        menuEdukasi = rootView.findViewById(R.id.menu_beranda_edukasi);
 
         //warna status bar
         if (Build.VERSION.SDK_INT>=21) {
@@ -96,6 +109,9 @@ public class Beranda extends Fragment {
 
         //app bar collapsed / expanded
         appBarLayout.addOnOffsetChangedListener(onOffsetChangedListener());
+
+        //main menu
+        mainMenu();
 
         //INFLATE DATA FEATURED ARTICLE
         //option
@@ -116,12 +132,15 @@ public class Beranda extends Fragment {
         //INFLATE DATA PROFESSIONAL ACCOUNT
         //option
         //query
-        queryAccountPro = firestore.collection("account").whereEqualTo("accountType","Professional");
+        queryAccountPro = firestore.collection("account")
+                .whereNotIn("keyAccount", Arrays.asList(auth.getUid()))
+                .whereEqualTo("professional",true)
+                .limit(5);
         optionsAccountPro = new FirestoreRecyclerOptions.Builder<MAccount>()
                 .setLifecycleOwner(Beranda.this)
                 .setQuery(queryAccountPro,MAccount.class).build();
         //adapter
-        adapterAccountPro = new AProfessionalAccount(optionsAccountPro);
+        adapterAccountPro = new AProfessionalAccount(optionsAccountPro,Beranda.this.getContext());
         //recyclerview
         recyclerViewAccountPro = rootView.findViewById(R.id.item_beranda_proaccount_recyclerview);
         recyclerViewAccountPro.setAdapter(adapterAccountPro);
@@ -196,5 +215,33 @@ public class Beranda extends Fragment {
                 }
             }
         };
+    }
+
+    //fungsi menu
+    void mainMenu() {
+
+        menuKonsultasi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), Konsultasi.class);
+                startActivity(intent);
+            }
+        });
+
+        menuPengacara.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), Pengacara.class);
+                startActivity(intent);
+            }
+        });
+
+        menuEdukasi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), Edukasi.class);
+                startActivity(intent);
+            }
+        });
     }
 }

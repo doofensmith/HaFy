@@ -8,6 +8,7 @@ public class MAccount {
     private String email;
     private String accountType;
     private Boolean isVerified;
+    private Boolean isProfessional;
     private String phoneNumber;
     private String birthDate;
     private String gender;
@@ -18,6 +19,7 @@ public class MAccount {
     private String education;
     private String rating;
     private String price;
+    private String lastOnline;
 
 
     //constructor
@@ -25,12 +27,29 @@ public class MAccount {
         //
     }
 
-    public MAccount(String keyAccount, String userName, String email, String accountType, Boolean isVerified, String phoneNumber, String birthDate, String gender, String bio, String about, String address, String job, String education, String rating, String price) {
+    public MAccount(String keyAccount,
+                    String userName,
+                    String email,
+                    String accountType,
+                    Boolean isVerified,
+                    Boolean isProfessional,
+                    String phoneNumber,
+                    String birthDate,
+                    String gender,
+                    String bio,
+                    String about,
+                    String address,
+                    String job,
+                    String education,
+                    String rating,
+                    String price,
+                    String lastOnline) {
         this.keyAccount = keyAccount;
         this.userName = userName;
         this.email = email;
         this.accountType = accountType;
         this.isVerified = isVerified;
+        this.isProfessional = isProfessional;
         this.phoneNumber = phoneNumber;
         this.birthDate = birthDate;
         this.gender = gender;
@@ -41,6 +60,7 @@ public class MAccount {
         this.education = education;
         this.rating = rating;
         this.price = price;
+        this.lastOnline = lastOnline;
     }
 
     public String getKeyAccount() {
@@ -161,5 +181,21 @@ public class MAccount {
 
     public void setPrice(String price) {
         this.price = price;
+    }
+
+    public String getLastOnline() {
+        return lastOnline;
+    }
+
+    public void setLastOnline(String lastOnline) {
+        this.lastOnline = lastOnline;
+    }
+
+    public Boolean getProfessional() {
+        return isProfessional;
+    }
+
+    public void setProfessional(Boolean professional) {
+        isProfessional = professional;
     }
 }

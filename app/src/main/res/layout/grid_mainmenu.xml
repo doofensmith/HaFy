@@ -11,7 +11,7 @@
         android:orientation="horizontal">
 
         <com.google.android.material.card.MaterialCardView
-            android:id="@+id/item_beranda_1_menukonsultasi"
+            android:id="@+id/menu_beranda_konsultasi"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -72,6 +72,7 @@
         </com.google.android.material.card.MaterialCardView>
 
         <com.google.android.material.card.MaterialCardView
+            android:id="@+id/menu_beranda_pengacara"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -139,7 +140,7 @@
         android:orientation="horizontal">
 
         <com.google.android.material.card.MaterialCardView
-            android:id="@+id/item_beranda_1_menuedukasi"
+            android:id="@+id/menu_beranda_edukasi"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"

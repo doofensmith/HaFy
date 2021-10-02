@@ -14,7 +14,7 @@
         android:background="?colorSecondary">
 
         <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/acp_toolbar"
+            android:id="@+id/act_chat_person_toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:menu="@menu/toolbarchatperson"
@@ -29,15 +29,15 @@
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="32dp"
                     android:layout_height="32dp"
-                    app:cardBackgroundColor="@color/primary"
+                    android:backgroundTint="@android:color/darker_gray"
                     app:cardCornerRadius="40dp"
                     android:layout_gravity="center_vertical">
 
                     <ImageView
+                        android:id="@+id/act_chat_person_pic"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/foto_agung" />
+                        android:scaleType="centerCrop" />
 
                 </com.google.android.material.card.MaterialCardView>
 
@@ -49,18 +49,20 @@
                     android:layout_marginStart="8dp">
 
                     <TextView
+                        android:id="@+id/act_chat_person_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Bernardus Agung Permadi S. Psi"
+                        android:text="userName"
                         android:textColor="?colorOnSecondary"
                         android:textSize="16sp"
                         android:maxLines="1"
                         android:ellipsize="end"/>
 
                     <TextView
+                        android:id="@+id/act_chat_person_lastonline"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="10 menit lalu"
+                        android:text="lastOnline"
                         android:textColor="@android:color/darker_gray"
                         android:textSize="12sp" />
 
@@ -72,21 +74,30 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-
-    <ScrollView
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/act_chat_person_recyclerview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fitsSystemWindows="true"
-        android:scrollbars="none"
+        android:paddingBottom="12dp"
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
-        android:layout_marginBottom="?actionBarSize">
+        android:layout_marginBottom="?actionBarSize"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:orientation="vertical"/>
 
-        <include
-            android:id="@+id/acp_test_chat_kanan"
-            android:visibility="gone"
-            layout="@layout/item_chat_kanan" />
+<!--    <ScrollView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:fitsSystemWindows="true"-->
+<!--        android:scrollbars="none"-->
+<!--        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"-->
+<!--        android:layout_marginBottom="?actionBarSize">-->
 
-    </ScrollView>
+<!--        <include-->
+<!--            android:id="@+id/acp_test_chat_kanan"-->
+<!--            android:visibility="gone"-->
+<!--            layout="@layout/item_chat_kanan" />-->
+
+<!--    </ScrollView>-->
 
 <!--    <androidx.recyclerview.widget.RecyclerView-->
 <!--        android:layout_width="match_parent"-->
@@ -123,14 +134,14 @@
                     android:backgroundTint="@android:color/transparent"
                     android:foreground="?selectableItemBackground"/>
 
-                <EditText
-                    android:id="@+id/acp_ed_pesan"
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/act_chat_person_inpmessage"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:layout_gravity="center"
                     android:textSize="14sp"
-                    android:textColor="?colorOnSecondary"
+                    android:textColor="@color/black"
                     android:maxLines="7"
                     android:inputType="textCapSentences|textMultiLine"
                     android:background="@android:color/transparent"
@@ -150,7 +161,7 @@
         </com.google.android.material.card.MaterialCardView>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/acp_fabsend"
+            android:id="@+id/act_chat_person_fab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
