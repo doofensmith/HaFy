@@ -58,7 +58,7 @@ public class ChatRoom extends AppCompatActivity {
                 onBackPressed();
             }
         });
-        
+
 
 
         //INFLATE CHAT ROOM

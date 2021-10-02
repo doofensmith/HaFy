@@ -4,12 +4,14 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.SnapHelper;
 
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -23,8 +25,11 @@ import com.google.android.material.card.MaterialCardView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
+import com.softtech.hafy.ChatRoom;
 import com.softtech.hafy.Edukasi;
 import com.softtech.hafy.Konsultasi;
+import com.softtech.hafy.Notification;
+import com.softtech.hafy.Pencarian;
 import com.softtech.hafy.Pengacara;
 import com.softtech.hafy.R;
 import com.softtech.hafy.adapter.AEducationCategory;
@@ -109,6 +114,9 @@ public class Beranda extends Fragment {
 
         //app bar collapsed / expanded
         appBarLayout.addOnOffsetChangedListener(onOffsetChangedListener());
+        //toolbar action option
+        toolbar.setOnMenuItemClickListener(onMenuItemClickListener(rootView));
+        collapsingToolbar.setOnMenuItemClickListener(onMenuItemClickListener(rootView));
 
         //main menu
         mainMenu();
@@ -173,6 +181,30 @@ public class Beranda extends Fragment {
         recyclerViewHomeArticle.setAdapter(adapterHomeArticle);
 
         return rootView;
+    }
+
+    //toolbar menu item
+    Toolbar.OnMenuItemClickListener onMenuItemClickListener(View view) {
+        return new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.menu_toolbar_beranda_cari:
+                        Intent intentSearch = new Intent(view.getContext(), Pencarian.class);
+                        startActivity(intentSearch);
+                        return true;
+                    case R.id.menu_toolbar_beranda_pesan:
+                        Intent intentMessage = new Intent(view.getContext(), ChatRoom.class);
+                        startActivity(intentMessage);
+                        return true;
+                    case R.id.menu_toolbar_beranda_notifikasi:
+                        Intent intentNotification = new Intent(view.getContext(), Notification.class);
+                        startActivity(intentNotification);
+                        return true;
+                }
+                return false;
+            }
+        };
     }
 
     AppBarLayout.OnOffsetChangedListener onOffsetChangedListener() {
