@@ -63,14 +63,16 @@ public class ChatRoom extends AppCompatActivity {
 
         //INFLATE CHAT ROOM
         //query
-        query = firestore.collection("chat_room");
+        query = firestore.collection("chat_room")
+                .whereEqualTo("keyChatRoom",auth.getUid())
+                .orderBy("lastChatTime", Query.Direction.DESCENDING);
         //option
         options = new FirestoreRecyclerOptions.Builder<MChatRoom>()
                 .setLifecycleOwner(ChatRoom.this)
                 .setQuery(query, MChatRoom.class)
                 .build();
         //adapter
-        adapter = new AChatRoom(options);
+        adapter = new AChatRoom(options, ChatRoom.this);
         //recyclerview
         recyclerView = findViewById(R.id.act_chat_room_recyclerview);
         recyclerView.setAdapter(adapter);

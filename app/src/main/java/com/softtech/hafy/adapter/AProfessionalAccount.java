@@ -38,8 +38,9 @@ public class AProfessionalAccount extends FirestoreRecyclerAdapter<MAccount, VHP
         holder.job.setText(model.getJob());
         holder.rating.setText(model.getRating());
         holder.workExperience.setText("1");
-        holder.onTime.setText("");
-        holder.price.setText("Rp. ");
+        holder.onTime.setText(model.getLastOnline());
+        holder.price.setText("Rp. "+model.getPrice());
+
 
         //button chat
         holder.buttonChat.setOnClickListener(new View.OnClickListener() {

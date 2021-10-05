@@ -1,12 +1,17 @@
 package com.softtech.hafy.model;
 
+import com.google.firebase.firestore.ServerTimestamp;
+
+import java.util.Date;
+
 public class MChatRoom {
     //atribut
     private String keyChatRoom;
     private String targetName;
+    private String targetKey;
     private String lastChat;
     private String targetPic;
-    private String lastChatTime;
+    private @ServerTimestamp Date lastChatTime;
 
     public MChatRoom() {
         //
@@ -14,14 +19,14 @@ public class MChatRoom {
 
     public MChatRoom(String keyChatRoom,
                      String targetName,
+                     String targetKey,
                      String lastChat,
-                     String targetPic,
-                     String lastChatTime) {
+                     String targetPic) {
         this.keyChatRoom = keyChatRoom;
         this.targetName = targetName;
+        this.targetKey = targetKey;
         this.lastChat = lastChat;
         this.targetPic = targetPic;
-        this.lastChatTime = lastChatTime;
     }
 
     public String getKeyChatRoom() {
@@ -56,11 +61,19 @@ public class MChatRoom {
         this.targetPic = targetPic;
     }
 
-    public String getLastChatTime() {
+    public Date getLastChatTime() {
         return lastChatTime;
     }
 
-    public void setLastChatTime(String lastChatTime) {
+    public void setLastChatTime(Date lastChatTime) {
         this.lastChatTime = lastChatTime;
+    }
+
+    public String getTargetKey() {
+        return targetKey;
+    }
+
+    public void setTargetKey(String targetKey) {
+        this.targetKey = targetKey;
     }
 }

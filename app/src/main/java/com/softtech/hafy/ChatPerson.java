@@ -21,17 +21,20 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.softtech.hafy.adapter.AChatPerson;
 import com.softtech.hafy.model.MAccount;
 import com.softtech.hafy.model.MChatPerson;
+import com.softtech.hafy.model.MChatRoom;
 import com.softtech.hafy.viewholder.VHChatPerson;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.HashMap;
 
 public class ChatPerson extends AppCompatActivity {
 
@@ -88,11 +91,11 @@ public class ChatPerson extends AppCompatActivity {
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
                         MAccount mAccount = documentSnapshot.toObject(MAccount.class);
                         userName.setText(mAccount.getUserName());
+                        lastOnline.setText(mAccount.getLastOnline());
                     }
                 });
 
-        //tombol kirim
-        fabSend.setOnClickListener(fabSend(editTextMessage, targetKeyAccount, firestore, auth));
+
 
         //INFLATE CHAT
         //query
@@ -110,11 +113,21 @@ public class ChatPerson extends AppCompatActivity {
         recyclerView = findViewById(R.id.act_chat_person_recyclerview);
         recyclerView.setAdapter(adapter);
 
+        //tombol kirim
+        fabSend.setOnClickListener(fabSend(editTextMessage, targetKeyAccount, firestore, auth,recyclerView,adapter));
+
+
+
 
     }
 
     //fungsi kirim
-    View.OnClickListener fabSend(EditText editTextMessage, String targetKeyAccount, FirebaseFirestore firestore, FirebaseAuth auth) {
+    View.OnClickListener fabSend(EditText editTextMessage,
+                                 String targetKeyAccount,
+                                 FirebaseFirestore firestore,
+                                 FirebaseAuth auth,
+                                 RecyclerView recyclerView,
+                                 FirestoreRecyclerAdapter adapter) {
         return new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -146,7 +159,57 @@ public class ChatPerson extends AppCompatActivity {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if (task.isSuccessful()) {
+                                        //clear edit text
                                         editTextMessage.setText("");
+                                        //scroll recyclerview
+                                        recyclerView.smoothScrollToPosition(adapter.getItemCount()-1);
+
+                                        //update chat room
+                                        firestore.collection("account").document(targetKeyAccount).get()
+                                                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                                                    @Override
+                                                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                                        MAccount mAccount = documentSnapshot.toObject(MAccount.class);
+                                                        MChatRoom mChatRoom = new MChatRoom();
+                                                        mChatRoom.setTargetPic(mAccount.getProfilePic());
+                                                        mChatRoom.setTargetName(mAccount.getUserName());
+                                                        mChatRoom.setTargetKey(targetKeyAccount);
+                                                        mChatRoom.setKeyChatRoom(auth.getUid());
+                                                        mChatRoom.setLastChat(message);
+                                                        firestore.collection("chat_room").document(auth.getUid())
+                                                                .set(mChatRoom);
+                                                    }
+                                                });
+
+                                        firestore.collection("account").document(auth.getUid()).get()
+                                                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                                                    @Override
+                                                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                                        MAccount mAccount = documentSnapshot.toObject(MAccount.class);
+                                                        MChatRoom mChatRoom = new MChatRoom();
+                                                        mChatRoom.setTargetPic(mAccount.getProfilePic());
+                                                        mChatRoom.setTargetName(mAccount.getUserName());
+                                                        mChatRoom.setTargetKey(auth.getUid());
+                                                        mChatRoom.setKeyChatRoom(targetKeyAccount);
+                                                        mChatRoom.setLastChat(message);
+                                                        firestore.collection("chat_room").document(targetKeyAccount)
+                                                                .set(mChatRoom);
+                                                    }
+                                                });
+
+//                                        //update chat room
+//                                        HashMap<String,Object> data = new HashMap<>();
+//                                        data.put("lastChat",message);
+//                                        data.put("lastChatTime", FieldValue.serverTimestamp());
+//                                        //add data to chat room
+//                                        firestore.collection("chat_room")
+//                                                .document(auth.getUid())
+//                                                .update(data);
+//                                        firestore.collection("chat_room")
+//                                                .document(targetKeyAccount)
+//                                                .update(data);
+
+
                                     }
                                 }
                             });
@@ -163,6 +226,8 @@ public class ChatPerson extends AppCompatActivity {
         Intent intent = new Intent(ChatPerson.this, ChatRoom.class);
         startActivity(intent);
         finish();
+
+
 
     }
 }

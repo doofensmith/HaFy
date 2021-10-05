@@ -4,6 +4,7 @@ public class MAccount {
 
     //attribut
     private String keyAccount;
+    private String profilePic;
     private String userName;
     private String email;
     private String accountType;
@@ -28,6 +29,7 @@ public class MAccount {
     }
 
     public MAccount(String keyAccount,
+                    String profilePic,
                     String userName,
                     String email,
                     String accountType,
@@ -45,6 +47,7 @@ public class MAccount {
                     String price,
                     String lastOnline) {
         this.keyAccount = keyAccount;
+        this.profilePic = profilePic;
         this.userName = userName;
         this.email = email;
         this.accountType = accountType;
@@ -197,5 +200,13 @@ public class MAccount {
 
     public void setProfessional(Boolean professional) {
         isProfessional = professional;
+    }
+
+    public String getProfilePic() {
+        return profilePic;
+    }
+
+    public void setProfilePic(String profilePic) {
+        this.profilePic = profilePic;
     }
 }
