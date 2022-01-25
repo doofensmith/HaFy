@@ -236,7 +236,7 @@ public class Beranda extends Fragment {
                     toolbar.setVisibility(View.GONE);
                     //set elevation
                     appBarLayout.setElevation(0);
-                    //warna status bar
+                    //warna status bar merah
                     if (Build.VERSION.SDK_INT>=21) {
                         Window window = Beranda.this.getActivity().getWindow();
                         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
