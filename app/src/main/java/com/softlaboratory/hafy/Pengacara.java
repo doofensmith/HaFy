@@ -50,18 +50,18 @@ public class Pengacara extends AppCompatActivity {
             }
         });
 
-        //INFLTE DATA
-        //query
-        query = firestore.collection("account").whereEqualTo("accountType","Pengacara");
-        //option
-        options = new FirestoreRecyclerOptions.Builder<MAccount>()
-                .setLifecycleOwner(Pengacara.this)
-                .setQuery(query,MAccount.class).build();
-        //adapter
-        adapter = new AProfessionalAccount(options,Pengacara.this);
-        //recyler view
-        recyclerView = findViewById(R.id.act_pengacara_recyclerview);
-        recyclerView.setAdapter(adapter);
+//        //INFLTE DATA
+//        //query
+//        query = firestore.collection("account").whereEqualTo("accountType","Pengacara");
+//        //option
+//        options = new FirestoreRecyclerOptions.Builder<MAccount>()
+//                .setLifecycleOwner(Pengacara.this)
+//                .setQuery(query,MAccount.class).build();
+//        //adapter
+//        adapter = new AProfessionalAccount(options,Pengacara.this);
+//        //recyler view
+//        recyclerView = findViewById(R.id.act_pengacara_recyclerview);
+//        recyclerView.setAdapter(adapter);
 
     }
 

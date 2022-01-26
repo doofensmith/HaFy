@@ -1,11 +1,16 @@
 package com.softlaboratory.hafy.fragments;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.ColorFilter;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
 
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.LifecycleOwner;
 import androidx.recyclerview.widget.LinearSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.SnapHelper;
@@ -35,13 +40,16 @@ import com.softlaboratory.hafy.R;
 import com.softlaboratory.hafy.adapter.AEducationCategory;
 import com.softlaboratory.hafy.adapter.AFeaturedArticle;
 import com.softlaboratory.hafy.adapter.AHomeArticle;
+import com.softlaboratory.hafy.adapter.AHomeContainer;
 import com.softlaboratory.hafy.adapter.AProfessionalAccount;
 import com.softlaboratory.hafy.model.MAccount;
 import com.softlaboratory.hafy.model.MArticle;
 import com.softlaboratory.hafy.model.MEducationCategory;
+import com.softlaboratory.hafy.model.MHomeContainer;
 import com.softlaboratory.hafy.viewholder.VHEducationCategory;
 import com.softlaboratory.hafy.viewholder.VHFeaturedArticle;
 import com.softlaboratory.hafy.viewholder.VHHomeArticle;
+import com.softlaboratory.hafy.viewholder.VHHomeContainer;
 import com.softlaboratory.hafy.viewholder.VHProfessionalAccount;
 
 import java.util.Arrays;
@@ -56,7 +64,7 @@ public class Beranda extends Fragment {
     //declare view
     AppBarLayout appBarLayout;
     MaterialToolbar collapsingToolbar;
-    MaterialToolbar toolbar;
+    //MaterialToolbar toolbar;
     MaterialCardView menuKonsultasi;
     MaterialCardView menuPengacara;
     MaterialCardView menuEdukasi;
@@ -64,6 +72,11 @@ public class Beranda extends Fragment {
     //firebase
     FirebaseAuth auth;
     FirebaseFirestore firestore;
+    //firestore
+    FirestoreRecyclerOptions<MHomeContainer> optionsContainer;
+    FirestoreRecyclerAdapter<MHomeContainer, VHHomeContainer> adapterContainer;
+    RecyclerView recyclerViewContainer;
+    Query queryContainer;
     //featured article
     FirestoreRecyclerOptions<MArticle> optionsFeaturedArticle;
     FirestoreRecyclerAdapter<MArticle, VHFeaturedArticle> adapterFeaturedArticle;
@@ -98,7 +111,7 @@ public class Beranda extends Fragment {
         //init view
         appBarLayout = rootView.findViewById(R.id.fr_beranda_appbar);
         collapsingToolbar = rootView.findViewById(R.id.fr_beranda_coll_toolbar);
-        toolbar = rootView.findViewById(R.id.fr_beranda_toolbar);
+        //toolbar = rootView.findViewById(R.id.fr_beranda_toolbar);
         menuKonsultasi = rootView.findViewById(R.id.menu_beranda_konsultasi);
         menuPengacara = rootView.findViewById(R.id.menu_beranda_pengacara);
         menuEdukasi = rootView.findViewById(R.id.menu_beranda_edukasi);
@@ -115,70 +128,85 @@ public class Beranda extends Fragment {
         //app bar collapsed / expanded
         appBarLayout.addOnOffsetChangedListener(onOffsetChangedListener());
         //toolbar action option
-        toolbar.setOnMenuItemClickListener(onMenuItemClickListener(rootView));
+        //toolbar.setOnMenuItemClickListener(onMenuItemClickListener(rootView));
         collapsingToolbar.setOnMenuItemClickListener(onMenuItemClickListener(rootView));
 
         //main menu
         mainMenu();
 
-        //INFLATE DATA FEATURED ARTICLE
+        //INFLATE RECYCLER VIEW
         //option
         //query
-        queryFeaturedArticle = firestore.collection("articles").whereEqualTo("featured",true);
-        optionsFeaturedArticle = new FirestoreRecyclerOptions.Builder<MArticle>()
-                .setLifecycleOwner(Beranda.this)
-                .setQuery(queryFeaturedArticle,MArticle.class).build();
+        queryContainer = firestore.collection("home")
+                .orderBy("groupId", Query.Direction.ASCENDING);
+        optionsContainer = new FirestoreRecyclerOptions.Builder<MHomeContainer>()
+                .setLifecycleOwner((LifecycleOwner) rootView.getContext())
+                .setQuery(queryContainer,MHomeContainer.class)
+                .build();
         //adapter
-        adapterFeaturedArticle = new AFeaturedArticle(optionsFeaturedArticle);
+        adapterContainer = new AHomeContainer(optionsContainer,rootView.getContext(),auth,firestore);
         //recyclerview
-        recyclerViewFeaturedArticle = rootView.findViewById(R.id.item_beranda_featuredarticle_recyclerview);
-        recyclerViewFeaturedArticle.setAdapter(adapterFeaturedArticle);
-        //recyclerview snap
-        SnapHelper snapHelperFeaturedArticle = new LinearSnapHelper();
-        snapHelperFeaturedArticle.attachToRecyclerView(recyclerViewFeaturedArticle);
+        recyclerViewContainer = rootView.findViewById(R.id.fragment_home_recyclerview);
+        recyclerViewContainer.setAdapter(adapterContainer);
 
-        //INFLATE DATA PROFESSIONAL ACCOUNT
-        //option
-        //query
-        queryAccountPro = firestore.collection("account")
-                .whereNotIn("keyAccount", Arrays.asList(auth.getUid()))
-                .whereEqualTo("professional",true)
-                .limit(5);
-        optionsAccountPro = new FirestoreRecyclerOptions.Builder<MAccount>()
-                .setLifecycleOwner(Beranda.this)
-                .setQuery(queryAccountPro,MAccount.class).build();
-        //adapter
-        adapterAccountPro = new AProfessionalAccount(optionsAccountPro,Beranda.this.getContext());
-        //recyclerview
-        recyclerViewAccountPro = rootView.findViewById(R.id.item_beranda_proaccount_recyclerview);
-        recyclerViewAccountPro.setAdapter(adapterAccountPro);
-        //recyclerview snap
-//        SnapHelper snapHelperAccountPro = new LinearSnapHelper();
-//        snapHelperAccountPro.attachToRecyclerView(recyclerViewFeaturedArticle);
-
-        //INFLATE DATA EDUCATION CATEGORY
-        //option
-        //query
-        queryEducationCategory = firestore.collection("education_category");
-        optionsEducationCategory = new FirestoreRecyclerOptions.Builder<MEducationCategory>()
-                .setLifecycleOwner(Beranda.this)
-                .setQuery(queryEducationCategory,MEducationCategory.class).build();
-        //adapter
-        adapterEducationCategory = new AEducationCategory(optionsEducationCategory);
-        recyclerViewEducationCategory = rootView.findViewById(R.id.item_beranda_edukasi_recyclerview);
-        recyclerViewEducationCategory.setAdapter(adapterEducationCategory);
-
-        //INFLATE DATA EDUCATION CATEGORY
-        //option
-        //query
-        queryHomeArticle = firestore.collection("articles").limit(10);
-        optionsHomeArticle = new FirestoreRecyclerOptions.Builder<MArticle>()
-                .setLifecycleOwner(Beranda.this)
-                .setQuery(queryHomeArticle,MArticle.class).build();
-        //adapter
-        adapterHomeArticle = new AHomeArticle(optionsHomeArticle);
-        recyclerViewHomeArticle = rootView.findViewById(R.id.item_beranda_article_recyclerview);
-        recyclerViewHomeArticle.setAdapter(adapterHomeArticle);
+//        //INFLATE DATA FEATURED ARTICLE
+//        //option
+//        //query
+//        queryFeaturedArticle = firestore.collection("articles").whereEqualTo("featured",true);
+//        optionsFeaturedArticle = new FirestoreRecyclerOptions.Builder<MArticle>()
+//                .setLifecycleOwner(Beranda.this)
+//                .setQuery(queryFeaturedArticle,MArticle.class).build();
+//        //adapter
+//        adapterFeaturedArticle = new AFeaturedArticle(optionsFeaturedArticle);
+//        //recyclerview
+//        recyclerViewFeaturedArticle = rootView.findViewById(R.id.item_beranda_featuredarticle_recyclerview);
+//        recyclerViewFeaturedArticle.setAdapter(adapterFeaturedArticle);
+//        //recyclerview snap
+//        SnapHelper snapHelperFeaturedArticle = new LinearSnapHelper();
+//        snapHelperFeaturedArticle.attachToRecyclerView(recyclerViewFeaturedArticle);
+//
+//        //INFLATE DATA PROFESSIONAL ACCOUNT
+//        //option
+//        //query
+//        queryAccountPro = firestore.collection("account")
+//                .whereNotIn("keyAccount", Arrays.asList(auth.getUid()))
+//                .whereEqualTo("professional",true)
+//                .limit(5);
+//        optionsAccountPro = new FirestoreRecyclerOptions.Builder<MAccount>()
+//                .setLifecycleOwner(Beranda.this)
+//                .setQuery(queryAccountPro,MAccount.class).build();
+//        //adapter
+//        adapterAccountPro = new AProfessionalAccount(optionsAccountPro,Beranda.this.getContext());
+//        //recyclerview
+//        recyclerViewAccountPro = rootView.findViewById(R.id.item_beranda_proaccount_recyclerview);
+//        recyclerViewAccountPro.setAdapter(adapterAccountPro);
+//        //recyclerview snap
+////        SnapHelper snapHelperAccountPro = new LinearSnapHelper();
+////        snapHelperAccountPro.attachToRecyclerView(recyclerViewFeaturedArticle);
+//
+//        //INFLATE DATA EDUCATION CATEGORY
+//        //option
+//        //query
+//        queryEducationCategory = firestore.collection("education_category");
+//        optionsEducationCategory = new FirestoreRecyclerOptions.Builder<MEducationCategory>()
+//                .setLifecycleOwner(Beranda.this)
+//                .setQuery(queryEducationCategory,MEducationCategory.class).build();
+//        //adapter
+//        adapterEducationCategory = new AEducationCategory(optionsEducationCategory);
+//        recyclerViewEducationCategory = rootView.findViewById(R.id.item_beranda_edukasi_recyclerview);
+//        recyclerViewEducationCategory.setAdapter(adapterEducationCategory);
+//
+//        //INFLATE DATA EDUCATION CATEGORY
+//        //option
+//        //query
+//        queryHomeArticle = firestore.collection("articles").limit(10);
+//        optionsHomeArticle = new FirestoreRecyclerOptions.Builder<MArticle>()
+//                .setLifecycleOwner(Beranda.this)
+//                .setQuery(queryHomeArticle,MArticle.class).build();
+//        //adapter
+//        adapterHomeArticle = new AHomeArticle(optionsHomeArticle);
+//        recyclerViewHomeArticle = rootView.findViewById(R.id.item_beranda_article_recyclerview);
+//        recyclerViewHomeArticle.setAdapter(adapterHomeArticle);
 
         return rootView;
     }
@@ -212,14 +240,18 @@ public class Beranda extends Fragment {
             @Override
             public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
                 //Math.abs(verticalOffset)-appBarLayout.getTotalScrollRange() == 0
-                if (verticalOffset <= -250) {
-                    //collapsed
-                    //toolbar visible
-                    toolbar.setVisibility(View.VISIBLE);
+                //verticalOffset <= -250
+                if (Math.abs(verticalOffset)-appBarLayout.getTotalScrollRange() == 0) {
+                    //set theme
+                    collapsingToolbar.setTitleTextColor(Color.BLACK);
+                    collapsingToolbar.getMenu().getItem(0).getIcon().setColorFilter(Color.BLACK, PorterDuff.Mode.SRC_ATOP);
+                    collapsingToolbar.getMenu().getItem(1).getIcon().setColorFilter(Color.BLACK, PorterDuff.Mode.SRC_ATOP);
+                    collapsingToolbar.getMenu().getItem(2).getIcon().setColorFilter(Color.BLACK, PorterDuff.Mode.SRC_ATOP);
+                    //collapsingToolbar.getOverflowIcon().setColorFilter(Color.BLACK);
                     //set elevation
                     appBarLayout.setElevation(8);
 
-                    //warna status bar
+                    //warna status bar putih
                     if (Build.VERSION.SDK_INT>=21) {
                         Window window = Beranda.this.getActivity().getWindow();
                         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
@@ -228,12 +260,12 @@ public class Beranda extends Fragment {
                         window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
                     }
                 }else {
-                    System.out.println(toolbar.getHeight());
-                    System.out.println(appBarLayout.getTotalScrollRange());
-                    System.out.println(verticalOffset);
                     //expanded
-                    //toolbar gone
-                    toolbar.setVisibility(View.GONE);
+                    //set theme
+                    collapsingToolbar.setTitleTextColor(Color.WHITE);
+                    collapsingToolbar.getMenu().getItem(0).getIcon().setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_ATOP);
+                    collapsingToolbar.getMenu().getItem(1).getIcon().setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_ATOP);
+                    collapsingToolbar.getMenu().getItem(2).getIcon().setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_ATOP);
                     //set elevation
                     appBarLayout.setElevation(0);
                     //warna status bar merah

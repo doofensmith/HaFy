@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -90,6 +91,7 @@ public class ChatPerson extends AppCompatActivity {
                         MAccount mAccount = documentSnapshot.toObject(MAccount.class);
                         userName.setText(mAccount.getUserName());
                         lastOnline.setText(mAccount.getLastOnline());
+                        Glide.with(ChatPerson.this).load(mAccount.getProfilePic()).into(profilePic);
                     }
                 });
 
@@ -106,7 +108,7 @@ public class ChatPerson extends AppCompatActivity {
                 .setLifecycleOwner(ChatPerson.this)
                 .setQuery(query, MChatPerson.class).build();
         //adapter
-        adapter = new AChatPerson(options);
+        adapter = new AChatPerson(options,auth,ChatPerson.this);
         //recyclerview
         recyclerView = findViewById(R.id.act_chat_person_recyclerview);
         recyclerView.setAdapter(adapter);

@@ -9,8 +9,11 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 
+import com.bumptech.glide.Glide;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.softlaboratory.hafy.ChatPerson;
 import com.softlaboratory.hafy.R;
 import com.softlaboratory.hafy.model.MAccount;
@@ -26,6 +29,9 @@ public class AProfessionalAccount extends FirestoreRecyclerAdapter<MAccount, VHP
 
     //param
     Context context;
+//    FirebaseAuth auth;
+//    FirebaseFirestore firestore;
+
 
     public AProfessionalAccount(@NonNull FirestoreRecyclerOptions<MAccount> options, Context context) {
         super(options);
@@ -40,6 +46,7 @@ public class AProfessionalAccount extends FirestoreRecyclerAdapter<MAccount, VHP
         holder.workExperience.setText("1");
         holder.onTime.setText(model.getLastOnline());
         holder.price.setText("Rp. "+model.getPrice());
+        Glide.with(context).load(model.getProfilePic()).into(holder.profilePic);
 
 
         //button chat

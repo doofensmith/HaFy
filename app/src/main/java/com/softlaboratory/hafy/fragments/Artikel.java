@@ -76,7 +76,7 @@ public class Artikel extends Fragment {
                 .setLifecycleOwner(Artikel.this)
                 .setQuery(query, MArticleTag.class).build();
         //adapter
-        adapter = new AArticleContainer(options);
+        adapter = new AArticleContainer(options,rootView.getContext());
         //recycler view
         recyclerView = rootView.findViewById(R.id.fragment_artikel_recyclerview);
         recyclerView.setAdapter(adapter);

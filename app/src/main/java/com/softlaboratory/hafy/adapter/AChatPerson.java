@@ -1,11 +1,13 @@
 package com.softlaboratory.hafy.adapter;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 
+import com.bumptech.glide.Glide;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
@@ -25,12 +27,12 @@ public class AChatPerson extends FirestoreRecyclerAdapter<MChatPerson, VHChatPer
     public static final int LEFT_CHAT = 1;
 
     FirebaseAuth auth;
+    Context context;
 
-    public AChatPerson(@NonNull FirestoreRecyclerOptions<MChatPerson> options) {
+    public AChatPerson(@NonNull FirestoreRecyclerOptions<MChatPerson> options, FirebaseAuth auth, Context context) {
         super(options);
-
-        auth = FirebaseAuth.getInstance();
-
+        this.auth = auth;
+        this.context = context;
     }
 
     @Override

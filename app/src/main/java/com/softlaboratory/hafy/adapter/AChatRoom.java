@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 
+import com.bumptech.glide.Glide;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.softlaboratory.hafy.ChatPerson;
@@ -35,6 +36,7 @@ public class AChatRoom extends FirestoreRecyclerAdapter<MChatRoom, VHChatRoom> {
     protected void onBindViewHolder(@NonNull VHChatRoom holder, int position, @NonNull MChatRoom model) {
         holder.name.setText(model.getTargetName());
         holder.lastChat.setText(model.getLastChat());
+        Glide.with(context).load(model.getTargetPic()).into(holder.profilePic);
 
         //on click
         holder.container.setOnClickListener(new View.OnClickListener() {

@@ -50,18 +50,18 @@ public class Konsultasi extends AppCompatActivity {
             }
         });
 
-        //INFLTE DATA
-        //query
-        query = firestore.collection("account").whereEqualTo("accountType","Konsultan");
-        //option
-        options = new FirestoreRecyclerOptions.Builder<MAccount>()
-                .setLifecycleOwner(Konsultasi.this)
-                .setQuery(query,MAccount.class).build();
-        //adapter
-        adapter = new AProfessionalAccount(options,Konsultasi.this);
-        //recyler view
-        recyclerView = findViewById(R.id.ak_recyclerview);
-        recyclerView.setAdapter(adapter);
+//        //INFLTE DATA
+//        //query
+//        query = firestore.collection("account").whereEqualTo("accountType","Konsultan");
+//        //option
+//        options = new FirestoreRecyclerOptions.Builder<MAccount>()
+//                .setLifecycleOwner(Konsultasi.this)
+//                .setQuery(query,MAccount.class).build();
+//        //adapter
+//        adapter = new AProfessionalAccount(options,Konsultasi.this);
+//        //recyler view
+//        recyclerView = findViewById(R.id.ak_recyclerview);
+//        recyclerView.setAdapter(adapter);
 
 
     }

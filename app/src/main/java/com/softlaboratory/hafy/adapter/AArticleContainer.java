@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.LifecycleOwner;
 
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
@@ -27,9 +28,10 @@ public class AArticleContainer extends FirestoreRecyclerAdapter<MArticleTag, VHA
     FirestoreRecyclerAdapter<MArticle, VHArticle> adapter;
     Query query;
 
-    public AArticleContainer(@NonNull FirestoreRecyclerOptions<MArticleTag> options) {
+    public AArticleContainer(@NonNull FirestoreRecyclerOptions<MArticleTag> options, Context context) {
         super(options);
 
+        this.context = context;
         auth = FirebaseAuth.getInstance();
         firestore = FirebaseFirestore.getInstance();
 
@@ -41,10 +43,11 @@ public class AArticleContainer extends FirestoreRecyclerAdapter<MArticleTag, VHA
         query = firestore.collection("articles").whereEqualTo("articleTag",model.getArticleTag()).limit(3);
         holder.articleTag.setText(model.getArticleTag());
         options = new FirestoreRecyclerOptions.Builder<MArticle>()
-                .setQuery(query, MArticle.class).build();
-        adapter = new AArticle(options);
+                .setQuery(query, MArticle.class)
+                .setLifecycleOwner((LifecycleOwner) context)
+                .build();
+        adapter = new AArticle(options,context);
         holder.itemArticle.setAdapter(adapter);
-        adapter.startListening();
 
     }
 

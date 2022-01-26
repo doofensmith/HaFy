@@ -6,6 +6,7 @@ public class MArticle {
     private String articleTitle;
     private String articleCategory;
     private String articleImageUrl;
+    private String articleWriterImage;
     private Object articleContent;
     private String articleWriter;
     private String datePublished;
@@ -16,11 +17,12 @@ public class MArticle {
         //
     }
 
-    public MArticle(String keyArticle, String articleTitle, String articleCategory, String articleImageUrl, Object articleContent, String articleWriter, String datePublished, Boolean isFeatured, String articleTag) {
+    public MArticle(String keyArticle, String articleTitle, String articleCategory, String articleImageUrl, String articleWriterImage, Object articleContent, String articleWriter, String datePublished, Boolean isFeatured, String articleTag) {
         this.keyArticle = keyArticle;
         this.articleTitle = articleTitle;
         this.articleCategory = articleCategory;
         this.articleImageUrl = articleImageUrl;
+        this.articleWriterImage = articleWriterImage;
         this.articleContent = articleContent;
         this.articleWriter = articleWriter;
         this.datePublished = datePublished;
@@ -58,6 +60,14 @@ public class MArticle {
 
     public void setArticleImageUrl(String articleImageUrl) {
         this.articleImageUrl = articleImageUrl;
+    }
+
+    public String getArticleWriterImage() {
+        return articleWriterImage;
+    }
+
+    public void setArticleWriterImage(String articleWriterImage) {
+        this.articleWriterImage = articleWriterImage;
     }
 
     public Object getArticleContent() {

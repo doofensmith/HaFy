@@ -115,6 +115,7 @@
             android:elevation="8dp">
 
             <ImageButton
+                android:id="@+id/act_buat_artikel_addimage"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:src="@drawable/ic_baseline_image_24"
