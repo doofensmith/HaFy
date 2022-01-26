@@ -17,6 +17,9 @@ import com.softlaboratory.hafy.R;
 import com.softlaboratory.hafy.model.MChatRoom;
 import com.softlaboratory.hafy.viewholder.VHChatRoom;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+
 public class AChatRoom extends FirestoreRecyclerAdapter<MChatRoom, VHChatRoom> {
     /**
      * Create a new RecyclerView adapter that listens to a Firestore Query.  See {@link
@@ -37,6 +40,10 @@ public class AChatRoom extends FirestoreRecyclerAdapter<MChatRoom, VHChatRoom> {
         holder.name.setText(model.getTargetName());
         holder.lastChat.setText(model.getLastChat());
         Glide.with(context).load(model.getTargetPic()).into(holder.profilePic);
+
+        //time
+        DateFormat dateFormat = new SimpleDateFormat("dd MMM yyyy '·' HH:mm");
+        holder.time.setText(dateFormat.format(model.getLastChatTime()));
 
         //on click
         holder.container.setOnClickListener(new View.OnClickListener() {

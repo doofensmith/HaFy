@@ -12,12 +12,13 @@ import com.softlaboratory.hafy.R;
 public class VHChatPerson extends RecyclerView.ViewHolder {
 
     public TextView message;
-    public ImageView targetPic;
+    public TextView time;
 
     public VHChatPerson(@NonNull View itemView) {
         super(itemView);
 
         message = itemView.findViewById(R.id.item_chat_message);
+        time = itemView.findViewById(R.id.item_chat_time);
 
     }
 }

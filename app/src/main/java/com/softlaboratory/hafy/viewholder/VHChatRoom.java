@@ -16,6 +16,7 @@ public class VHChatRoom extends RecyclerView.ViewHolder {
     public ImageView profilePic;
     public TextView name;
     public TextView lastChat;
+    public TextView time;
 
     public VHChatRoom(@NonNull View itemView) {
         super(itemView);
@@ -24,6 +25,7 @@ public class VHChatRoom extends RecyclerView.ViewHolder {
         profilePic = itemView.findViewById(R.id.item_chat_image);
         name = itemView.findViewById(R.id.item_chat_name);
         lastChat = itemView.findViewById(R.id.item_chat_lastchat);
+        time = itemView.findViewById(R.id.item_chatroom_time);;
 
     }
 }

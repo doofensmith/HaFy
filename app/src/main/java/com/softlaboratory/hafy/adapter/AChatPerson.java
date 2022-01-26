@@ -15,6 +15,9 @@ import com.softlaboratory.hafy.R;
 import com.softlaboratory.hafy.model.MChatPerson;
 import com.softlaboratory.hafy.viewholder.VHChatPerson;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+
 public class AChatPerson extends FirestoreRecyclerAdapter<MChatPerson, VHChatPerson> {
     /**
      * Create a new RecyclerView adapter that listens to a Firestore Query.  See {@link
@@ -37,7 +40,11 @@ public class AChatPerson extends FirestoreRecyclerAdapter<MChatPerson, VHChatPer
 
     @Override
     protected void onBindViewHolder(@NonNull VHChatPerson holder, int position, @NonNull MChatPerson model) {
+
+        //date format hh:mm aa atau HH:mm
+        DateFormat dateFormat = new SimpleDateFormat("dd MMM yyyy '·' HH:mm");
         holder.message.setText(model.getMessage());
+        holder.time.setText(dateFormat.format(model.getTimestamp()));
     }
 
     @NonNull
