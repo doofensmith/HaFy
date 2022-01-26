@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -109,6 +110,9 @@ public class BuatArtikel extends AppCompatActivity {
 
         if (resultCode == RESULT_OK && requestCode == SELECT_IMAGE) {
             imageUri = data.getData();
+            Glide.with(BuatArtikel.this).load(imageUri)
+                    .centerCrop()
+                    .into(addImage);
         }
     }
 
@@ -197,19 +201,20 @@ public class BuatArtikel extends AppCompatActivity {
 //                            .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
 //                                @Override
 //                                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-//                                    firestore.collection("articles").document(keyArticle).update("articleImageUrl",taskSnapshot.getStorage().getDownloadUrl());
+//                                    firestore.collection("articles").document(keyArticle).update("articleImageUrl",taskSnapshot.getDownloadUrl());
 //                                }
 //                            })
                             .continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
                                 @Override
                                 public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
-                                    return imageRef.child("article_image/image_"+keyArticle+".jpg").getDownloadUrl();
+                                    return imageRef.child("article_images/image_"+keyArticle+".jpg").getDownloadUrl();
                                 }
                             })
                             .continueWithTask(new Continuation<Uri, Task<Void>>() {
                                 @Override
                                 public Task<Void> then(@NonNull Task<Uri> task) throws Exception {
-                                    return firestore.collection("articles").document(keyArticle).update("articleImageUrl",task.getResult());
+                                    System.out.println("RESULT : "+task.getResult());
+                                    return firestore.collection("articles").document(keyArticle).update("articleImageUrl",task.getResult().toString());
                                 }
                             })
                             .addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -217,11 +222,11 @@ public class BuatArtikel extends AppCompatActivity {
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if (task.isSuccessful()) {
                                         //pindah activity
-                                        //Intent intent = new Intent(context, MainActivity.class);
+                                        Intent intent = new Intent(context, MainActivity.class);
                                         //intent.putExtra("fragmentId",1);
-                                        //startActivity(intent);
+                                        startActivity(intent);
                                         progressDialog.dismiss();
-                                        //finish();
+                                        finish();
                                     }else {
                                         //alert information
                                         AlertDialog alertDialog = new AlertDialog.Builder(context).create();

@@ -103,7 +103,22 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-//    void aturToolbar (Toolbar toolbar, String title, boolean menu_cari, boolean menu_pesan, boolean menu_notif, boolean menu_buat) {
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        changeFragments(new Beranda());
+
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+
+        changeFragments(new Beranda());
+    }
+
+    //    void aturToolbar (Toolbar toolbar, String title, boolean menu_cari, boolean menu_pesan, boolean menu_notif, boolean menu_buat) {
 //        toolbar.setTitle(title);
 //        toolbar.getMenu().getItem(0).setVisible(menu_cari);
 //        toolbar.getMenu().getItem(1).setVisible(menu_pesan);
