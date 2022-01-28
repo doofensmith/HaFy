@@ -1,6 +1,8 @@
 package com.softlaboratory.hafy.adapter;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,6 +47,34 @@ public class AChatPerson extends FirestoreRecyclerAdapter<MChatPerson, VHChatPer
         DateFormat dateFormat = new SimpleDateFormat("dd MMM yyyy '·' HH:mm");
         holder.message.setText(model.getMessage());
         holder.time.setText(dateFormat.format(model.getTimestamp()));
+
+
+        //CHAT ON CLICK
+        holder.container.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+
+                AlertDialog alertDialog = new AlertDialog.Builder(context).create();
+                alertDialog.setTitle("Hapus pesan?");
+                alertDialog.setMessage("Ingin menghapus pesan ini?");
+                alertDialog.setButton(DialogInterface.BUTTON_POSITIVE, "Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                });
+                alertDialog.setButton(DialogInterface.BUTTON_NEGATIVE, "No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                });
+                alertDialog.show();
+
+
+                return false;
+            }
+        });
     }
 
     @NonNull
